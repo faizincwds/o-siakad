@@ -1,49 +1,141 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# o-siakad
 
-## About Laravel
+Ringkasan singkat: aplikasi Laravel modular (nwidart/laravel-modules) untuk manajemen akademik.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Kebutuhan Sistem**:
+- PHP 8.3+
+- Composer
+- Node.js + npm
+- Database (MySQL/Postgres/SQLite)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Quick links**: lihat `composer.json` dan `package.json` untuk dependensi dan script.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+**Setup (singkat)**
+1. Clone repo.
+2. Salin file environment dan generate key.
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone <repo-url>
+cd o-siakad
+composer install
+cp .env.example .env
+php artisan key:generate
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+3. Konfigurasi database di `.env` lalu jalankan migrasi dan seed (jika perlu):
 
-## Contributing
+```bash
+php artisan migrate --force
+php artisan db:seed --class=DatabaseSeeder
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. Install dependensi frontend dan build aset:
+
+```bash
+npm install
+npm run build
+```
+
+Catatan: repository memiliki script composer `setup` yang menjalankan langkah-langkah umum; dapat dijalankan dengan `composer run setup`.
+
+**Mode pengembangan**
+
+```bash
+composer run dev
+```
+
+atau menjalankan langkah manual:
+
+```bash
+php artisan serve
+npm run dev
+```
+
+**Package (dependency penting)**
+- Backend (Composer) — `composer.json` (dependensi runtime):
+
+- `php`: ^8.3
+- `avadim/fast-excel-laravel`: ^2.14
+- `barryvdh/laravel-dompdf`: ^3.1
+- `laravel/framework`: ^13.8
+- `laravel/tinker`: ^3.0
+- `nwidart/laravel-modules`: ^13.0
+- `spatie/laravel-activitylog`: ^5.0
+- `spatie/laravel-backup`: ^10.2
+- `spatie/laravel-medialibrary`: ^11.22
+- `spatie/laravel-permission`: ^7.4
+- `spatie/laravel-schedule-monitor`: ^4.3
+- `spatie/laravel-settings`: ^3.8
+- `spatie/laravel-sitemap`: ^8.1
+- `symfony/ux-chartjs`: ^3.0
+
+- Dev dependencies (`composer.json` -> `require-dev`):
+
+- `fakerphp/faker`: ^1.23
+- `laravel/pail`: ^1.2.5
+- `laravel/pao`: ^1.0.6
+- `laravel/pint`: ^1.27
+- `mockery/mockery`: ^1.6
+- `nunomaduro/collision`: ^8.6
+- `pestphp/pest`: ^4.7
+- `pestphp/pest-plugin-laravel`: ^4.1
+
+- Frontend (npm / devDependencies) — lihat `package.json`:
+
+- `vite`: ^8.0.0
+- `tailwindcss`: ^4.0.0
+- `laravel-vite-plugin`: ^3.1
+- `@tailwindcss/vite`: ^4.0.0
+- `concurrently`: ^9.0.1
+
+Untuk detail versi lengkap lihat [composer.json](composer.json) dan [package.json](package.json).
+
+**Modul & Struktur**
+- Proyek menggunakan `nwidart/laravel-modules`. Modul berada di folder `Modules/` dan di-autoload lewat namespace `Modules\\` -> `Modules/` (lihat `composer.json`).
+- Contoh: `Modules/Mahasiswa/` berisi controller, model, migration, view, route modul tersendiri.
+- Perintah berguna:
+
+```bash
+php artisan module:list
+php artisan module:make NamaModul
+php artisan module:migrate NamaModul
+```
+
+- Catatan: module routes biasanya didefinisikan di dalam modul (`Modules/<Modul>/Routes/web.php`) atau di-include oleh service provider modul.
+
+**Lokasi penting**
+- `app/Http/Controllers` : controller aplikasi utama
+- `app/Models` : model global (mis. `User.php`)
+- `Modules/` : kumpulan modul fungsional
+- `routes/web.php` : route utama aplikasi
+- `composer.json`, `package.json` : konfigurasi dependensi dan script build
+
+**Selanjutnya / Kontribusi**
+- Tambahkan dokumentasi modul individual di dalam masing-masing modul (`Modules/<NamaModul>/README.md`).
+- Jika mau, saya bisa membuat dokumen terpisah untuk setiap modul utama.
+
+**API / Routes**
+- Route utama aplikasi didefinisikan di `routes/web.php` dan `routes/api.php`.
+- Modul-modul juga dapat mendaftarkan route sendiri di dalam folder modul (`Modules/<Modul>/Routes/`).
+- Untuk melihat semua route yang terdaftar jalankan:
+
+```bash
+php artisan route:list
+```
+
+- Untuk melihat route khusus API atau memfilter berdasarkan path gunakan opsi `--path` atau `--name`.
+- Contoh request (jika ada endpoint API `GET /api/users`):
+
+```bash
+curl -sS -H "Accept: application/json" http://localhost:8000/api/users
+```
+
+- Jika aplikasi menggunakan autentikasi token (Sanctum/Passport), sertakan header `Authorization: Bearer <token>` pada request.
+
+---
+
+---
 
 ## Code of Conduct
 
