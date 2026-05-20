@@ -1,71 +1,80 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Neo Feeder — Dashboard Akademik PDDIKTI">
-    <meta name="theme-color" content="#4f46e5">
-    <title>Neo Feeder — @yield('title', 'Dashboard Akademik')</title>
-
-    {{-- Tailwind CSS CDN --}}
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        display: ['"Space Grotesk"', 'sans-serif'],
-                        body: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
-    {{-- Google Fonts --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    {{-- Material Icons Outlined --}}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-
-    {{-- Vite Assets --}}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@yield('title', 'e-SIAKAD')</title>
+    <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+  </head>
 
-    @stack('styles')
-</head>
-<body class="antialiased">
-    {{-- Overlay --}}
-    <div class="ov" id="ov" onclick="cmob()"></div>
+  <body
+    x-data="themesUI()"
+    class="font-body bg-surface text-foreground antialiased overflow-x-hidden transition-colors duration-300"
+    x-effect="document.documentElement.classList.toggle('dark', isDark)"
+    @keydown.escape="mobileSidebar = false; userDropdown = false"
+    @resize.window="windowWidth = window.innerWidth; if (windowWidth > 1024) mobileSidebar = false">
 
-    {{-- Sidebar --}}
-    @include('partials.sidebar')
+  <div
+    x-show="mobileSidebar"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    @click="mobileSidebar = false"
+    class="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm lg:hidden">
+  </div>
 
-    {{-- Main Wrapper --}}
-    <div class="mw" id="mw">
-        {{-- Header --}}
-        @include('partials.header')
+  <div
+    class="min-h-screen flex flex-col transition-[margin] duration-300 ease-in-out"
+    :style="`margin-left: ${sidebarOffset}px`">
 
-        {{-- Main Content --}}
-        <main class="p-4 md:p-5 flex-1" id="pg">
-            @yield('content')
+        @include('layouts.partials.header')
+        @include('layouts.partials.sidebar')
+
+        <main class="flex-1 p-4 md:p-5">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-1 text-[11px] text-muted mb-4 flex-wrap" aria-label="Breadcrumb">
+            <template x-for="(crumb, i) in breadcrumbs" :key="i">
+            <span class="contents">
+                <span :class="{ 'text-foreground font-semibold': i === breadcrumbs.length - 1 }" x-text="crumb"></span>
+                <span x-show="i < breadcrumbs.length - 1" class="material-icons-outlined text-[11px]">chevron_right</span>
+            </span>
+            </template>
+        </nav>
+
+        <!-- Page Title -->
+        <div class="flex items-start gap-3 mb-6" x-show="pageTitle">
+            <div class="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center shrink-0">
+            <span class="material-icons-outlined text-[19px] text-brand-500" x-text="pageIcon"></span>
+            </div>
+            <div>
+            <h1 class="font-display font-bold text-[17px] leading-tight text-foreground" x-text="pageTitle"></h1>
+            <p class="text-[11px] text-muted mt-0.5" x-text="pageDesc"></p>
+            </div>
+        </div>
+
+        <!-- Empty Content Area -->
+        <div class="bg-card border border-card-border rounded-xl p-8 text-center transition-colors duration-300">
+            <div class="w-16 h-16 rounded-2xl bg-surface mx-auto mb-4 flex items-center justify-center">
+            <span class="material-icons-outlined text-[32px] text-muted/40" x-text="pageIcon || 'widgets'"></span>
+            </div>
+            <h3 class="font-display font-bold text-sm text-foreground mb-1" x-text="pageTitle || 'Dashboard'"></h3>
+            <p class="text-[11px] text-muted max-w-xs mx-auto">Konten halaman akan ditampilkan di sini. Pilih menu di sidebar untuk bernavigasi.</p>
+
+                @yield('content')
+
+        </div>
         </main>
 
-        {{-- Footer --}}
-        <footer class="p-4 text-center text-sm" style="color:var(--tx2);border-top:1px solid var(--bd)">
-            Neo Feeder v3.0.0 — Universitas Nusantara Mandiri &copy; 2026
+        <footer class="px-5 py-2.5 text-center border-t border-border shrink-0">
+            <p class="text-[9px] text-muted">Neo Feeder v3.0.0 — e-SIAKAD &copy; 2026</p>
         </footer>
-    </div>
 
-    {{-- Modal --}}
-    <div class="mb" id="mdl" onclick="if(event.target===this)cmod()">
-        <div class="mx" id="mxB"></div>
-    </div>
+        @include('layouts.partials.footer')
 
-    {{-- Toast Container --}}
-    <div class="tc" id="tc"></div>
-
-    @stack('scripts')
+  </div>
 </body>
 </html>
