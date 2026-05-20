@@ -1,5 +1,6 @@
 {
     "Settings": true,
+    "Mahasiswa": true,
     "Dosen": true,
-    "Mahasiswa": true
+    "Mhs": true
 }

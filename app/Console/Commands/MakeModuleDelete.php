@@ -22,6 +22,7 @@ class MakeModuleDelete extends Command
         $modelName      = ucfirst($folderName);
         $controllerName = ucfirst($folderName) . 'Controller';
         $tableName      = Str::snake(Str::plural($folderName));
+        $moduleNameLower   = Str::snake(Str::plural($moduleName));
 
         $this->warn("⚠️  You are about to delete files for Module: {$moduleName}, Name: {$folderName}");
         if (!$this->confirm("Continue?", true)) {
@@ -35,7 +36,7 @@ class MakeModuleDelete extends Command
         // =============================================
         // 1. HAPUS MIGRATION
         // =============================================
-        $migrationPath = module_path($moduleName, "Database/Migrations");
+        $migrationPath = module_path($moduleName, "database/migrations");
         $files = glob($migrationPath . "/*_create_{$tableName}_table.php");
 
         if (!empty($files)) {
@@ -50,10 +51,10 @@ class MakeModuleDelete extends Command
         // =============================================
         // 2. HAPUS MODEL
         // =============================================
-        $modelFile = module_path($moduleName, "app/Models/{$modelName}.php");
+        $modelFile = module_path($moduleName, "Models/{$modelName}.php");
         if (File::exists($modelFile)) {
             File::delete($modelFile);
-            $this->line("✅ Deleted: app/Models/{$modelName}.php");
+            $this->line("✅ Deleted: Models/{$modelName}.php");
         } else {
             $this->line("⚠️  Model not found.");
         }
@@ -61,10 +62,10 @@ class MakeModuleDelete extends Command
         // =============================================
         // 3. HAPUS CONTROLLER
         // =============================================
-        $controllerFile = module_path($moduleName, "app/Http/Controllers/{$controllerName}.php");
+        $controllerFile = module_path($moduleName, "Http/Controllers/{$controllerName}.php");
         if (File::exists($controllerFile)) {
             File::delete($controllerFile);
-            $this->line("✅ Deleted: app/Http/Controllers/{$controllerName}.php");
+            $this->line("✅ Deleted: Http/Controllers/{$controllerName}.php");
         } else {
             $this->line("⚠️  Controller not found.");
         }
@@ -72,7 +73,7 @@ class MakeModuleDelete extends Command
         // =============================================
         // 4. HAPUS FOLDER VIEWS
         // =============================================
-        $viewFolder = module_path($moduleName, "Resources/views/{$folderName}");
+        $viewFolder = module_path($moduleName, "resources/views/{$folderName}");
         if (File::isDirectory($viewFolder)) {
             File::deleteDirectory($viewFolder);
             $this->line("✅ Deleted: Resources/views/{$folderName} (Folder)");
@@ -83,17 +84,17 @@ class MakeModuleDelete extends Command
         // =============================================
         // 5. HAPUS ROUTE & USE DI WEB.PHP
         // =============================================
-        $routePath = module_path($moduleName, "Routes/web.php");
+        $routePath = module_path($moduleName, "routes/web.php");
         if (File::exists($routePath)) {
 
             $content = File::get($routePath);
 
             // Kode yang mau dihapus
-            $useStatement = "use Modules\\{$moduleName}\\App\\Http\\Controllers\\{$controllerName};";
+            $useStatement = "use Modules\\{$moduleName}\\Http\\Controllers\\{$controllerName};";
            // $routeLine = "Route::resource('{$folderName}', {$controllerName}::class)->names('{$folderName}');";
     $routeLine = <<<PHP
     Route::middleware(['web'])
-        ->prefix('{$folderName}')
+        ->prefix('{$moduleNameLower}')
         ->name('{$folderName}.')
         ->group(function () {
             Route::get('/', [{$controllerName}::class, 'index'])->name('index');

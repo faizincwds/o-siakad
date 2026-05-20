@@ -1,0 +1,11 @@
+{
+    "name": "Mhs",
+    "alias": "mhs",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Mhs\\Providers\\MhsServiceProvider"
+    ],
+    "files": []
+}

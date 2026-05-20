@@ -8,7 +8,7 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Support\Str;
 use File;
 
-#[Signature('module:make-mvc {module} {name} {columns?*}')]
+#[Signature('module:make-file {module} {name} {columns?*}')]
 #[Description('Generate Migration, Model, Controller, View & Route automatically with UUID & Attributes')]
 class MakeModuleFile extends Command
 {
@@ -23,6 +23,7 @@ class MakeModuleFile extends Command
         $modelName      = ucfirst($folderName);
         $controllerName = ucfirst($folderName) . 'Controller';
         $tableName      = Str::snake(Str::plural($folderName));
+        $moduleNameLower   = Str::snake(Str::plural($moduleName));
         $migrationClassName = 'Create' . ucfirst(Str::camel($tableName)) . 'Table';
         $columns        = $this->argument('columns') ?? [];
 
@@ -41,11 +42,11 @@ class MakeModuleFile extends Command
         $basePath = module_path($moduleName);
 
         $folders = [
-            "{$basePath}/app/Models",
-            "{$basePath}/app/Http/Controllers",
-            "{$basePath}/Resources/views",
-            "{$basePath}/Database/Migrations",
-            "{$basePath}/Routes",
+            "{$basePath}/Models",
+            "{$basePath}/Http/Controllers",
+            "{$basePath}/resources/views",
+            "{$basePath}/database/migrations",
+            "{$basePath}/routes",
         ];
 
         foreach ($folders as $folder) {
@@ -60,7 +61,7 @@ class MakeModuleFile extends Command
         // 1. MEMBUAT MIGRATION
         // =============================================
         $migrationName = date('Y_m_d_His') . "_create_{$tableName}_table.php";
-        $migrationPath = module_path($moduleName, "Database/Migrations/{$migrationName}");
+        $migrationPath = module_path($moduleName, "database/migrations/{$migrationName}");
 
         if (!File::exists($migrationPath)) {
             $migrationColumns = "";
@@ -93,7 +94,7 @@ $migrationColumns
 }
 PHP;
             File::put($migrationPath, $migrationContent);
-            $this->line("✅ File created: Modules/{$moduleName}/Database/Migrations/{$migrationName}");
+            $this->line("✅ File created: Modules/{$moduleName}/Database/Migrations{$migrationName}");
         } else {
             $this->line("⚠️  Migration already exists.");
         }
@@ -101,7 +102,7 @@ PHP;
         // =============================================
         // 2. MEMBUAT MODEL
         // =============================================
-        $modelPath = module_path($moduleName, "app/Models/{$modelName}.php");
+        $modelPath = module_path($moduleName, "Models/{$modelName}.php");
 
         if (!File::exists($modelPath)) {
             $fillableString = "[" . implode(', ', array_map(fn($col) => "'$col'", $columns)) . "]";
@@ -109,7 +110,7 @@ PHP;
             $modelContent = <<<PHP
 <?php
 
-namespace Modules\\{$moduleName}\App\Models;
+namespace Modules\\{$moduleName}\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -125,7 +126,7 @@ class {$modelName} extends Model
 }
 PHP;
             File::put($modelPath, $modelContent);
-            $this->line("✅ File created: Modules/{$moduleName}/app/Models/{$modelName}.php");
+            $this->line("✅ File created: Modules/{$moduleName}/Models/{$modelName}.php");
         } else {
             $this->line("⚠️  Model already exists.");
         }
@@ -135,7 +136,7 @@ PHP;
         // =============================================
         // 3. MEMBUAT CONTROLLER (FIXED VIEW PATH)
         // =============================================
-        $controllerPath = module_path($moduleName, "app/Http/Controllers/{$controllerName}.php");
+        $controllerPath = module_path($moduleName, "Http/Controllers/{$controllerName}.php");
 
         if (!File::exists($controllerPath)) {
             $validationRules = "";
@@ -146,11 +147,11 @@ PHP;
             $controllerContent = <<<PHP
 <?php
 
-namespace Modules\\{$moduleName}\App\Http\Controllers;
+namespace Modules\\{$moduleName}\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Modules\\{$moduleName}\App\\Models\\{$modelName};
+use Modules\\{$moduleName}\\Models\\{$modelName};
 
 class {$controllerName} extends Controller
 {
@@ -218,7 +219,7 @@ $validationRules
 }
 PHP;
             File::put($controllerPath, $controllerContent);
-            $this->line("✅ File created: Modules/{$moduleName}/app/Http/Controllers/{$controllerName}.php");
+            $this->line("✅ File created: Modules/{$moduleName}/Http/Controllers/{$controllerName}.php");
         } else {
             $this->line("⚠️  Controller already exists.");
         }
@@ -228,7 +229,7 @@ PHP;
         // =============================================
         // 4. MEMBUAT VIEWS
         // =============================================
-        $folderPath = module_path($moduleName, "Resources/views/{$folderName}");
+        $folderPath = module_path($moduleName, "resources/views/{$folderName}");
 
         if (!File::isDirectory($folderPath)) {
             File::makeDirectory($folderPath, 0755, true);
@@ -273,7 +274,7 @@ BLADE;
         // =============================================
         // 5. TAMBAH ROUTE OTOMATIS
         // =============================================
-        $routePath = module_path($moduleName, "Routes/web.php");
+        $routePath = module_path($moduleName, "routes/web.php");
 
         if (!File::exists($routePath)) {
             File::put($routePath, "<?php\n\nuse Illuminate\Support\Facades\Route;\n");
@@ -281,12 +282,12 @@ BLADE;
 
         $existingContent = File::get($routePath);
         $routeNameCheck = "->names('{$folderName}')";
-        $useStatement = "use Modules\\{$moduleName}\\App\\Http\\Controllers\\{$controllerName};";
+        $useStatement = "use Modules\\{$moduleName}\\Http\\Controllers\\{$controllerName};";
         // $routeLine = "Route::resource('{$folderName}', {$controllerName}::class)->names('{$folderName}');";
 
 $routeLine = <<<PHP
 Route::middleware(['web'])
-    ->prefix('{$folderName}')
+    ->prefix('{$moduleNameLower}')
     ->name('{$folderName}.')
     ->group(function () {
         Route::get('/', [{$controllerName}::class, 'index'])->name('index');
