@@ -76,5 +76,31 @@
         @include('layouts.partials.footer')
 
   </div>
+
+<script>
+
+    window.appConfig = {
+        activePage:
+            @json(Route::currentRouteName()),
+        menuItems:
+            @json($menuItems),
+        pageMeta:
+            @json($pageMeta),
+        themeOpts:
+            @json($themeOpts),
+        routes: {
+
+            @foreach($pageMeta as $key => $meta)
+
+                '{{ $key }}':
+                    '{{ Route::has($key) ? route($key) : '#' }}',
+
+            @endforeach
+
+        }
+
+    }
+
+</script>
 </body>
 </html>

@@ -2,7 +2,8 @@ export default function themesUI() {
   return {
     /* ─── State ─── */
     //activePage: 'dashboard',
-    activePage: '{{ Route::currentRouteName() }}',
+    // activePage: '{{ Route::currentRouteName() }}',
+    activePage: window.appConfig.activePage,
     collapsed: false,
     _sidebarWidth: 260,
     windowWidth: window.innerWidth,
@@ -16,13 +17,13 @@ export default function themesUI() {
     _sysMq: null,
 
     /* ─── Menu Definition ─── */
-    menuItems: @json($menuItems),
+    menuItems: window.appConfig.menuItems,
 
     /* ─── Page Meta ─── */
-    pageMeta: @json($pageMeta),
+    pageMeta: window.appConfig.pageMeta,
 
     /* ─── Theme Options ─── */
-    themeOpts: @json($themeOpts),
+    themeOpts: window.appConfig.themeOpts,
 
     /* ─── Computed ─── */
     get themeIcon() {
@@ -47,22 +48,16 @@ export default function themesUI() {
     /* ─── Navigation ─── */
     navigate(pageId) {
       // Cek dulu apa rutenya ada? Kalau belum ada, pakai '#'
-      let url = {
-              @foreach($pageMeta as $key => $meta)
-                  '{{ $key }}': '{{ route($key, [], false) }}', // false = ambil URL tapi JANGAN error kalau belum ada
-              @endforeach
-          }[pageId] || '#';
-          window.location.href = url;
-      }
-      this.activePage = pageId;
-      this.mobileSidebar = false;
-      this.userDropdown = false;
-      // Auto-expand parent if child is selected
-      this.menuItems.forEach((item, idx) => {
-        if (item.children && item.children.some(c => c.id === pageId)) {
-          if (!this.openMenus.includes(idx)) this.openMenus.push(idx);
-        }
-      });
+        const url = window.appConfig.routes[pageId] || '#'
+        this.activePage = pageId;
+        this.mobileSidebar = false;
+        this.userDropdown = false;
+        // Auto-expand parent if child is selected
+        this.menuItems.forEach((item, idx) => {
+            if (item.children && item.children.some(c => c.id === pageId)) {
+            if (!this.openMenus.includes(idx)) this.openMenus.push(idx);
+            }
+        });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
 
