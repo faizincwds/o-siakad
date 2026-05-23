@@ -40,7 +40,7 @@
             <div class="relative">
                 <input type="password" name="password" placeholder="Enter your password"
                     class="w-full rounded-lg border border-stroke bg-transparent py-3 pl-5 pr-12 text-gray-900 outline-none focus:border-primary focus:ring-1 focus:ring-primary dark:border-strokedark dark:bg-gray-800/50 dark:text-white dark:focus:border-primary">
-                <span class="absolute right-4 top-3.5 text-gray-400 cursor-pointer">
+                <span class="absolute right-4 top-3.5 text-gray-400">
                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
