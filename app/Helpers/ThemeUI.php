@@ -81,9 +81,8 @@ class ThemeUI
 
             /* ─── Theme Options ─── */
             'themeOpts' => [
-                ['id' => 'light',  'icon' => 'light_mode',      'label' => 'Terang'],
-                ['id' => 'dark',   'icon' => 'dark_mode',        'label' => 'Gelap'],
-                ['id' => 'system', 'icon' => 'settings_suggest', 'label' => 'Sistem'],
+                ['id' => 'light', 'icon' => 'light_mode', 'label' => 'Terang'],
+                ['id' => 'dark', 'icon' => 'dark_mode', 'label' => 'Gelap'],
             ]
         ];
     }

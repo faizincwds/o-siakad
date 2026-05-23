@@ -6,6 +6,7 @@
     <title>@yield('title', 'e-SIAKAD') </title>
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
   </head>
 
   <body
@@ -76,9 +77,8 @@
         @include('layouts.partials.footer')
 
   </div>
-
+@stack('scripts')
 <script>
-
     window.appConfig = {
         activePage:
             @json(Route::currentRouteName()),
@@ -89,18 +89,12 @@
         themeOpts:
             @json($themeOpts),
         routes: {
-
             @foreach($pageMeta as $key => $meta)
-
                 '{{ $key }}':
                     '{{ Route::has($key) ? route($key) : '#' }}',
-
             @endforeach
-
         }
-
     }
-
 </script>
 </body>
 </html>

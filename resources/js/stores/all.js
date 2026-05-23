@@ -3,7 +3,7 @@ export default function themesUI() {
     /* ─── State ─── */
     //activePage: 'dashboard',
     // activePage: '{{ Route::currentRouteName() }}',
-    activePage: window.appConfig.activePage,
+    activePage: window.appConfig.pageMeta[window.appConfig.activePage] ? window.appConfig.activePage : 'dashboard',
     collapsed: false,
     _sidebarWidth: 260,
     windowWidth: window.innerWidth,
@@ -11,10 +11,9 @@ export default function themesUI() {
     userDropdown: false,
     openMenus: [],
     searchQuery: '',
-    theme: 'system',
+    theme: 'light',
     isDark: false,
     toasts: [],
-    _sysMq: null,
 
     /* ─── Menu Definition ─── */
     menuItems: window.appConfig.menuItems,
@@ -27,10 +26,10 @@ export default function themesUI() {
 
     /* ─── Computed ─── */
     get themeIcon() {
-      return { light: 'light_mode', dark: 'dark_mode', system: 'brightness_auto' }[this.theme] || 'brightness_auto';
+      return { light: 'light_mode', dark: 'dark_mode' }[this.theme] || 'light_mode';
     },
     get themeLabel() {
-      return { light: 'Terang', dark: 'Gelap', system: 'Sistem' }[this.theme] || 'Sistem';
+      return { light: 'Terang', dark: 'Gelap' }[this.theme] || 'Terang';
     },
     get pageIcon() {
       return (this.pageMeta[this.activePage] || {}).icon || 'widgets';
@@ -55,10 +54,18 @@ export default function themesUI() {
         // Auto-expand parent if child is selected
         this.menuItems.forEach((item, idx) => {
             if (item.children && item.children.some(c => c.id === pageId)) {
-            if (!this.openMenus.includes(idx)) this.openMenus.push(idx);
+                // if (!this.openMenus.includes(idx)) this.openMenus.push(idx);
+                this.openMenus = [idx]
             }
         });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+            // Redirect
+            if (url !== '#') {
+            setTimeout(() => {
+                window.location.assign(url)
+            }, this.windowWidth <= 1024 ? 250 : 80)
+    }
     },
 
     isParentActive(item) {
@@ -66,8 +73,13 @@ export default function themesUI() {
     },
 
     toggleSubmenu(idx) {
-      const i = this.openMenus.indexOf(idx);
-      i === -1 ? this.openMenus.push(idx) : this.openMenus.splice(i, 1);
+    //   const i = this.openMenus.indexOf(idx);
+    //   i === -1 ? this.openMenus.push(idx) : this.openMenus.splice(i, 1);
+        if (this.openMenus.includes(idx)) {
+            this.openMenus = this.openMenus.filter( i => i !== idx )
+        } else {
+            this.openMenus.push(idx)
+        }
     },
 
     /* ─── Sidebar ─── */
@@ -90,10 +102,14 @@ export default function themesUI() {
       this.applyTheme();
     },
     applyTheme() {
-      this.isDark = this.theme === 'dark' || (this.theme === 'system' && this._sysMq && this._sysMq.matches);
+      this.isDark = this.theme === 'dark';
+      document.documentElement.classList.toggle(
+            'dark',
+            this.isDark
+        );
     },
     cycleTheme() {
-      const order = ['light', 'dark', 'system'];
+      const order = ['light', 'dark'];
       const next = order[(order.indexOf(this.theme) + 1) % order.length];
       this.setTheme(next);
       this.toast('Tema: ' + this.themeLabel, 'info');
@@ -115,10 +131,10 @@ export default function themesUI() {
       const q = this.searchQuery.trim().toLowerCase();
       if (!q) return;
       for (const item of this.menuItems) {
-        if (item.id && item.label.toLowerCase().includes(q)) { this.navigate(item.id); this.searchQuery = ''; return; }
+        if (item.id && (item.label || '').toLowerCase().includes(q)) { this.navigate(item.id); this.searchQuery = ''; return; }
         if (item.children) {
           for (const child of item.children) {
-            if (child.label.toLowerCase().includes(q)) { this.navigate(child.id); this.searchQuery = ''; return; }
+            if ((child.label || '').toLowerCase().includes(q)) { this.navigate(child.id); this.searchQuery = ''; return; }
           }
         }
       }
@@ -126,12 +142,16 @@ export default function themesUI() {
 
     /* ─── Init ─── */
     init() {
-      this.windowWidth = window.innerWidth;
-      this._sysMq = window.matchMedia('(prefers-color-scheme: dark)');
-      this._sysMq.addEventListener('change', () => { if (this.theme === 'system') this.applyTheme(); });
-      const saved = localStorage.getItem('nf-theme');
-      if (['light', 'dark', 'system'].includes(saved)) this.theme = saved;
-      this.applyTheme();
+        this.windowWidth = window.innerWidth;
+        window.addEventListener('resize', () => { this.windowWidth = window.innerWidth });
+        this.menuItems.forEach((item, idx) => {
+            if ( item.children && item.children.some(c => c.id === this.activePage)) {
+                this.openMenus.push(idx)
+            }
+            });
+        const saved = localStorage.getItem('nf-theme');
+        if (['light', 'dark'].includes(saved)) this.theme = saved;
+        this.applyTheme();
     }
   };
 }
