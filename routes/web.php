@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MahasiswaController;
 
 // Dashboard & Profil
 Route::get('/', function(){
@@ -21,3 +22,6 @@ Route::get('/forgot', function () {
 Route::get('/verify', function () {
     return view('auth.verification');
 })->name('verify');
+
+Route::post('/import', [MahasiswaController::class, 'import'])
+    ->name('import');
