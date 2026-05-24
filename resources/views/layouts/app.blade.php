@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title', 'e-SIAKAD') </title>
+    <title> {{ $meta['title'] ?? config('app.name') }} </title>
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
@@ -88,12 +88,27 @@
             @json($pageMeta),
         themeOpts:
             @json($themeOpts),
-        routes: {
-            @foreach($pageMeta as $key => $meta)
-                '{{ $key }}':
-                    '{{ Route::has($key) ? route($key) : '#' }}',
-            @endforeach
-        }
+        // routes: {
+        //     @foreach($pageMeta as $key => $meta)
+        //         '{{ $key }}':
+        //             '{{ Route::has($key) ? route($key) : '#' }}',
+        //     @endforeach }
+        routes: @json(
+            collect($menuItems)
+                ->flatMap(function ($item) {
+                    if (isset($item['children'])) {
+                        return collect($item['children'])
+                            ->pluck('route');
+                    }
+
+                    return [$item['route'] ?? null];
+                })
+                ->filter()
+                ->mapWithKeys(fn ($route) => [
+                    $route => route($route)
+                ])
+        ),
+
     }
 </script>
 </body>

@@ -2,8 +2,6 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\Auth;
-
 class ThemeUI
 {
     public static function getData()
@@ -40,6 +38,7 @@ class ThemeUI
                     ['id' => 'set-sandbox',  'label' => 'Sandbox'],
                     ['id' => 'set-periode',  'label' => 'Pengaturan Periode'],
                     ['id' => 'set-log',      'label' => 'Log Feeder'],
+                    ['id' => 'settings',     'label' => 'Pengaturan', 'route' => 'settings.index'],
                 ]],
                 ['icon' => 'file_download', 'label' => 'Export Data', 'children' => [
                     ['id' => 'exp-mhs',   'label' => 'Mahasiswa'],
@@ -79,6 +78,7 @@ class ThemeUI
                 'syn-pddikti'    => ['icon' => 'cloud_upload',    'title' => 'Sinkronisasi PDDIKTI',   'desc' => 'Kirim data ke server PDDIKTI',                       'crumbs' => ['Sinkronisasi', 'Sinkronisasi PDDIKTI']],
                 'syn-pengguna'   => ['icon' => 'group',           'title' => 'Sinkronisasi Pengguna',  'desc' => 'Sinkronisasi data pengguna',                         'crumbs' => ['Sinkronisasi', 'Sinkronisasi Pengguna']],
                 'syn-faq'        => ['icon' => 'help',            'title' => 'FAQ PDDIKTI',            'desc' => 'Pertanyaan seputar sinkronisasi',                     'crumbs' => ['Sinkronisasi', 'FAQ PDDIKTI']],
+                'settings'       => ['icon' => 'settings',        'title' => 'Pengaturan',             'desc' => 'Konfigurasi sistem',                                 'crumbs' => ['Pengaturan', 'Pengaturan']],
             ],
 
             /* ─── Theme Options ─── */
@@ -87,5 +87,41 @@ class ThemeUI
                 ['id' => 'dark', 'icon' => 'dark_mode', 'label' => 'Gelap'],
             ]
         ];
+    }
+
+    public static function findMenuByRoute(?string $routeName)
+    {
+        $menus = static::getData()['menuItems'];
+
+        foreach ($menus as $menu) {
+            // menu tanpa children
+            if (isset($menu['route']) && $menu['route'] === $routeName) {
+                return $menu;
+            }
+
+            // menu children
+            if (! empty($menu['children'])) {
+
+                foreach ($menu['children'] as $child) {
+
+                    if (isset($child['route']) && $child['route'] === $routeName) {
+                        return $child;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static function getMetaFromRoute(?string $routeName)
+    {
+        $menu = static::findMenuByRoute($routeName);
+
+        if (! $menu) {
+            return null;
+        }
+
+        return static::getData()['pageMeta'][$menu['id']] ?? null;
     }
 }

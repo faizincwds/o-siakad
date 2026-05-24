@@ -14,21 +14,20 @@ use Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes;
 return [
 
     'backup' => [
-        /*
-         * The name of this application. You can use this name to monitor
-         * the backups.
-         */
+
         'name' => env('APP_NAME', 'laravel-backup'),
 
         'source' => [
             'files' => [
-                /*
-                 * The list of directories and files that will be included in the backup.
-                 */
-                'include' => [
-                    base_path(),
-                    // storage_path(),  // Include if you use zero downtime deployments and don't follow symlinks
-                ],
+                'include' => env('BACKUP_STORAGE', true)
+                    ? [
+                        base_path(),
+                    ]
+                    : [],
+                // 'include' => [
+                //     base_path(),
+                //     storage_path(),  // Include if you use zero downtime deployments and don't follow symlinks
+                // ],
 
                 /*
                  * These directories and files will be excluded from the backup.
@@ -89,9 +88,14 @@ return [
              *
              * For a complete list of available customization options, see https://github.com/spatie/db-dumper
              */
-            'databases' => [
-                env('DB_CONNECTION', 'mysql'),
-            ],
+            // 'databases' => [
+            //     env('DB_CONNECTION', 'mysql'),
+            // ],
+            'databases' => env('BACKUP_DATABASE', true)
+                ? [
+                    env('DB_CONNECTION', 'mysql'),
+                ]
+                : [],
         ],
 
         /*
@@ -105,6 +109,7 @@ return [
          *
          * If you do not want any compressor at all, set it to null.
          */
+        // 'database_dump_compressor' => null,
         'database_dump_compressor' => null,
 
         /*
@@ -164,7 +169,8 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                'local',
+                // 'local',
+                env('BACKUP_DISK', 'local'),
             ],
 
             /*
@@ -339,7 +345,7 @@ return [
              * of that day will be kept. Older backups within the same day will be removed.
              * If you create backups only once a day, no backups will be removed yet.
              */
-            'keep_daily_backups_for_days' => 16,
+            'keep_daily_backups_for_days' => env('BACKUP_KEEP_DAYS', 30),
 
             /*
              * After the "keep_daily_backups_for_days" period is over, the most recent backup

@@ -1,26 +1,46 @@
 <?php
 
 // use Illuminate\Console\Scheduling\Schedule;
+use App\Settings\BackupSettings;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
-// use Illuminate\Support\Facades\Schedule;
+use Illuminate\Support\Facades\Schedule;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-// Schedule::command('backup:run')
-//     ->dailyAt('01:00')
-//     ->monitorName('Daily_Backup');
+Schedule::call(function () {
 
-// Schedule::command('backup:clean')
-//     ->dailyAt('02:00')
-//     ->monitorName('Backup_Cleanup');
+    $backup = app(BackupSettings::class);
 
-// Schedule::command('generate:sitemap')
-//     ->daily()
-//     ->monitorName('Generate_Sitemap');
+    if ($backup->backup_active) {
+        Artisan::call('backup:run');
+    }
+
+})
+->dailyAt('01:00')
+->name('backup_run')
+->withoutOverlapping();
+
+Schedule::call(function () {
+
+    $backup = app(BackupSettings::class);
+
+    if ($backup->backup_active) {
+        Artisan::call('backup:clean');
+    }
+
+})
+->dailyAt('02:00')
+->name('backup_clean');
+
+Schedule::command('generate:sitemap')
+    ->daily()
+    ->name('Generate_Sitemap')
+    ->withoutOverlapping()
+    ->runInBackground();
 
 // Schedule::command('queue:restart')
 //     ->daily()
-//     ->monitorName('Queue_Restart');
+//     ->name('Queue_Restart');

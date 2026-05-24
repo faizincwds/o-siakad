@@ -46,6 +46,9 @@ export default function themesUI() {
 
     /* ─── Navigation ─── */
     navigate(pageId) {
+        if (this.routes[pageId]) {
+                window.location.href = this.routes[pageId];
+            }
       // Cek dulu apa rutenya ada? Kalau belum ada, pakai '#'
         const url = window.appConfig.routes[pageId] || '#'
         this.activePage = pageId;
@@ -69,7 +72,10 @@ export default function themesUI() {
     },
 
     isParentActive(item) {
-      return item.children && item.children.some(c => c.id === this.activePage);
+        if (!item.children) return false;
+
+            // return item.children.some(child => child.route === this.activePage);
+            return item.children && item.children.some(c => c.route === this.activePage);
     },
 
     toggleSubmenu(idx) {
