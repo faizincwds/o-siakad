@@ -116,62 +116,135 @@
                     </button>
                 </div>
 
-            <div class="relative">
-                <input
-                    :type="showPassword ? 'text' : 'password'"
-                    name="password"
-                    placeholder="Enter your password"
-                    class="w-full rounded-lg border border-stroke bg-transparent py-3 pl-5 pr-12 text-gray-900 outline-none transition focus:border-primary focus:ring-1 focus:ring-primary dark:border-strokedark dark:bg-gray-800/50 dark:text-white dark:focus:border-primary"
-                >
-
-                <span
-                    @click="showPassword = !showPassword"
-                    class="absolute right-4 top-3.5 cursor-pointer text-gray-400"
-                >
-                    <svg
-                        x-show="!showPassword"
-                        x-transition.opacity
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                <div class="relative">
+                    <input
+                        :type="showPassword ? 'text' : 'password'"
+                        name="password"
+                        x-model="password"
+                        @keydown.window="capslock = $event.getModifierState('CapsLock')"
+                        placeholder="Enter your password"
+                        class="w-full rounded-lg border border-gray-300 bg-transparent py-3 pl-5 pr-28 text-gray-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-gray-800/50 dark:text-white"
+                        required
                     >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                        />
-                    </svg>
 
-                    <svg
-                        x-show="showPassword"
-                        x-transition.opacity
-                        class="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.956 9.956 0 012.042-3.368M6.223 6.223A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.97 9.97 0 01-4.132 5.411M15 12a3 3 0 00-3-3m0 0a2.996 2.996 0 00-2.12.879M12 9l-8 8m8-8l8 8"
-                        />
+                    <div class="absolute right-3 top-3 flex items-center gap-2">
+                        <!-- Copy Button -->
+                        <button
+                            type="button"
+                            @click="copyPassword()"
+                            class="text-gray-400 transition-colors hover:text-primary"
+                            title="Copy password"
+                        >
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                        </button>
+
+                        <!-- Eye Toggle Button -->
+                        <button
+                            type="button"
+                            @click="showPassword = !showPassword"
+                            class="text-gray-400 transition-colors hover:text-primary"
+                            :title="showPassword ? 'Hide password' : 'Show password'"
+                        >
+                            <!-- Eye Open -->
+                            <span x-show="!showPassword" x-cloak>
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <!-- Bentuk Mata -->
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    <!-- Bulatan Pupil -->
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </span>
+                            <!-- Eye Off -->
+                            <span x-show="showPassword" x-cloak>
+                                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <line x1="3" y1="3" x2="21" y2="21" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Capslock Warning -->
+                <div
+                    x-show="capslock"
+                    x-transition
+                    class="mt-2 flex items-center gap-2 rounded-lg border border-yellow-200 bg-yellow-50 px-3 py-2 text-sm text-yellow-700 dark:border-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400"
+                >
+                    <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
                     </svg>
-                </span>
+                    <span>Caps Lock is on</span>
+                </div>
+
+                <!-- Password Error -->
+                @error('password')
+                    <p class="mt-1.5 flex items-center gap-1.5 text-xs text-red-500">
+                        <svg class="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        {{ $message }}
+                    </p>
+                @enderror
+
+                <!-- Strength Meter -->
+                <div x-show="password.length > 0" class="mt-4">
+                    <div class="mb-2 flex items-center justify-between text-sm">
+                        <span class="text-gray-500 dark:text-gray-400">Password Strength</span>
+                        <span x-text="strengthLabel" :class="strengthTextColor"></span>
+                    </div>
+
+                    <div class="h-2 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
+                        <div
+                            class="h-full rounded-full transition-all duration-500 ease-in-out"
+                            :style="`width: ${strengthWidth}%; background-color: ${strengthColor};`"
+                        ></div>
+                    </div>
+
+                    <!-- Requirements Checklist -->
+                    <div class="mt-4 grid gap-2.5 text-sm">
+                        <template x-for="item in [
+                              { check: hasMinLength, label: 'At least 8 characters' },
+                              { check: hasUppercase, label: 'Contains uppercase letter' },
+                              { check: hasLowercase, label: 'Contains lowercase letter' },
+                              { check: hasNumber, label: 'Contains a number' },
+                              { check: hasSymbol, label: 'Contains a symbol' }
+                          ]" :key="item.label">
+                            <div
+                                class="flex items-center gap-2"
+                                :class="item.check ? 'text-green-500' : 'text-gray-400 dark:text-gray-500'"
+                            >
+                                <!-- Check -->
+                                <svg
+                                    x-show="item.check"
+                                    class="h-4 w-4 shrink-0"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+
+                                <!-- Uncheck -->
+                                <svg
+                                    x-show="!item.check"
+                                    class="h-4 w-4 shrink-0"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle cx="12" cy="12" r="9" stroke-width="2" />
+                                </svg>
+
+                                <span x-text="item.label"></span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
             </div>
-
-            @error('password')
-                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
-            @enderror
-        </div>
 
             <!-- Confirm Password -->
             <div>
@@ -222,7 +295,7 @@
 
                 <!-- Match Indicator -->
                 <div x-show="confirmPassword.length > 0" x-transition class="mt-2">
-
+                  
                     <div
                         x-show="!passwordMatch"
                         class="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600 dark:border-red-700 dark:bg-red-900/20 dark:text-red-400"
