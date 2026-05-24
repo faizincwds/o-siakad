@@ -8,7 +8,7 @@
           <span class="material-icons-outlined text-[18px] text-muted">menu</span>
         </button>
         <div class="hidden sm:block">
-          <div class="font-display font-bold text-[13px] leading-tight text-foreground">Universitas Nusantara Mandiri</div>
+          <div class="font-display font-bold text-[13px] leading-tight text-foreground">STITUSA BANJARNEGARA</div>
           <div class="text-[9.5px] font-medium text-muted">Semester Genap 2025/2026</div>
         </div>
       </div>

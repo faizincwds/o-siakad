@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Auth;
+
 class ThemeUI
 {
     public static function getData()
@@ -15,7 +17,7 @@ class ThemeUI
                     ['id' => 'mhs-daftar', 'label' => 'Daftar Mahasiswa'],
                     ['id' => 'mhs-hapus',  'label' => 'Daftar Mahasiswa Hapus'],
                 ]],
-                ['icon' => 'person',   'label' => 'Dosen', 'children' => [
+                ['icon' => 'person', 'label' => 'Dosen', 'permission' => null, 'children' => [
                     ['id' => 'dsn-daftar',     'label' => 'Dosen'],
                     ['id' => 'dsn-penugasan',  'label' => 'Penugasan Dosen'],
                 ]],

@@ -56,15 +56,21 @@
                     <div>
                     <template x-for="child in item.children" :key="child.id">
                         <button
-                        @click="navigate(child.id)"
-                        class="flex items-center gap-1.5 pl-12 pr-4 py-1.5 mx-2 rounded-md text-[12.5px]
-                                text-sidebar-dim hover:bg-black/3 hover:text-brand-700
-                                dark:hover:bg-white/4 dark:hover:text-brand-300
+                            @click="navigate(child.id)"
+                            class="flex items-center gap-1.5 pl-12 pr-4 py-1.5 mx-2 rounded-md text-[12.5px]
                                 transition-all duration-150 w-full text-left select-none"
-                        :class="{ 'text-brand-500 bg-brand-500/8': activePage === child.id }">
-                        <span class="w-1 h-1 rounded-full bg-sidebar-dim dark:bg-white/10 shrink-0"
-                                :class="{ 'bg-brand-500': activePage === child.id }"></span>
-                        <span x-text="child.label"></span>
+                            :class="activePage === child.id
+                                ? 'bg-brand-500/10 text-brand-600 dark:text-brand-400 font-medium'
+                                : 'text-sidebar-dim hover:bg-black/3 hover:text-brand-700 dark:hover:bg-white/4 dark:hover:text-brand-300'"
+                        >
+                            <span
+                                class="w-1.5 h-1.5 rounded-full shrink-0 transition-all"
+                                :class="activePage === child.id
+                                    ? 'bg-brand-500'
+                                    : 'bg-sidebar-dim dark:bg-white/10'"
+                            ></span>
+
+                            <span x-text="child.label"></span>
                         </button>
                     </template>
                     </div>

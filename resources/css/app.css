@@ -47,8 +47,8 @@
   --color-sidebar-deepest: #1a2332;
   --color-sidebar-border: rgba(255,255,255,.07);
   --color-sidebar-text: #ecfdf5;
-  --color-sidebar-muted: rgba(209,250,229,.45);
-  --color-sidebar-dim: rgba(209,250,229,.28);
+  --color-sidebar-muted: rgba(209, 250, 229, 0.895);
+  --color-sidebar-dim: rgba(209, 250, 229, 0.781);
 
   --color-surface: #0f172a;
   --color-card: #1a2332;
