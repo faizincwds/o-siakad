@@ -3,7 +3,9 @@
 @section('title', 'Sign In')
 
 @section('content')
-    <h2 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Sign In</h2>
+
+    <img src="{{ asset('logo-siakad.svg') }}" class="mb-10" alt="e-SIAKAD">
+    <h2 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">@yield('title')</h2>
     <p class="mb-9 text-sm text-gray-500 dark:text-gray-400">
         Enter your email and password to sign in!
     </p>
@@ -62,7 +64,7 @@
             </label>
 
             @if (Route::has('password.request') ? route('password.request') : false)
-                <a href="{{ route('password.request') ? route('password.request') : '#' }}" class="text-sm font-medium text-primary hover:underline">
+                <a href="{{ Route::has('password.request') ? route('password.request') : '#' }}" class="text-sm font-medium text-primary hover:underline">
                     Forgot password?
                 </a>
             @endif

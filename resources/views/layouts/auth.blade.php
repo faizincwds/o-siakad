@@ -32,25 +32,6 @@
         <!-- LEFT -->
         <section class="flex w-full flex-1 flex-col px-6 py-10 lg:w-1/2">
 
-            <!-- Back -->
-            <div class="mx-auto w-full max-w-md">
-                <a
-                    href="#"
-                    class="
-                        inline-flex items-center gap-2
-                        text-sm text-gray-500
-                        transition hover:text-brand-600
-                        dark:text-gray-400
-                    "
-                >
-                    <span class="material-icons-outlined text-[18px]">
-                        arrow_back
-                    </span>
-
-                    Back
-                </a>
-            </div>
-
             <!-- Form -->
             <div class="mx-auto flex w-full max-w-md flex-1 flex-col justify-center">
 

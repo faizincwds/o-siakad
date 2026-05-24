@@ -10,7 +10,7 @@
 $base = '
     cursor-pointer
     inline-flex items-center justify-center gap-2
-    rounded-xl
+    rounded-md
     font-medium
     transition-all duration-200
     focus:outline-none
