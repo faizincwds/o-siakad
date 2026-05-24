@@ -64,9 +64,8 @@
             </div>
             <h3 class="font-display font-bold text-sm text-foreground mb-1" x-text="pageTitle || 'Dashboard'"></h3>
             <p class="text-[11px] text-muted max-w-xs mx-auto">Konten halaman akan ditampilkan di sini. Pilih menu di sidebar untuk bernavigasi.</p>
-
                 @yield('content')
-
+           
         </div>
         </main>
 
@@ -88,11 +87,6 @@
             @json($pageMeta),
         themeOpts:
             @json($themeOpts),
-        // routes: {
-        //     @foreach($pageMeta as $key => $meta)
-        //         '{{ $key }}':
-        //             '{{ Route::has($key) ? route($key) : '#' }}',
-        //     @endforeach }
         routes: @json(
             collect($menuItems)
                 ->flatMap(function ($item) {

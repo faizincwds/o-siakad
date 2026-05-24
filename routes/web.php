@@ -21,7 +21,7 @@ Route::controller(SettingController::class)->group(function () {
 // Dashboard & Profil
 Route::get('/', function(){
     return view('home');
-});
+})->name('dashboard');
 
 Route::get('/login', function () {
     return view('auth.login');

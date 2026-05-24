@@ -56,7 +56,7 @@
                     class="flex items-center gap-2 px-3 py-2 text-[12.5px] text-muted hover:bg-surface hover:text-foreground w-full transition-colors">
               <span class="material-icons-outlined text-[17px]">person</span>Profil
             </button>
-            <button @click="navigate('set-periode'); userDropdown = false"
+            <button @click="navigate('settings.index'); userDropdown = false"
                     class="flex items-center gap-2 px-3 py-2 text-[12.5px] text-muted hover:bg-surface hover:text-foreground w-full transition-colors">
               <span class="material-icons-outlined text-[17px]">settings</span>Pengaturan
             </button>

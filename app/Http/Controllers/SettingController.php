@@ -15,8 +15,10 @@ class SettingController extends Controller
     public function index(GeneralSettings $settings)
     {
         $meta = MenuHelper::meta();
-
-        return view('page.settings.index', compact('meta'));
+        // halaman utama
+        return view(
+            'pages.settings.index', compact('meta')
+        );   
     }
 
     public function update(Request $request, GeneralSettings $settings)

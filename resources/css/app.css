@@ -71,6 +71,25 @@
 .submenu.open { grid-template-rows: 1fr; }
 .submenu > div { overflow: hidden; }
 
+/* Animasi View Transition untuk menghilangkan efek berkedip */
+::view-transition-old(root) {
+  animation: fade-out 0.15s ease-in-out;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 0.15s ease-in-out;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @layer base {
     body {
         font-family: var(--font-body);
