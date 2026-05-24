@@ -121,7 +121,7 @@
                         :type="showPassword ? 'text' : 'password'"
                         name="password"
                         x-model="password"
-                        @keydown.window="capslock = $event.getModifierState('CapsLock')"
+                        @keyup="capslock = $event.getModifierState('CapsLock')"
                         placeholder="Enter your password"
                         class="w-full rounded-lg border border-gray-300 bg-transparent py-3 pl-5 pr-28 text-gray-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-gray-800/50 dark:text-white"
                         required
@@ -295,7 +295,7 @@
 
                 <!-- Match Indicator -->
                 <div x-show="confirmPassword.length > 0" x-transition class="mt-2">
-                  
+
                     <div
                         x-show="!passwordMatch"
                         class="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600 dark:border-red-700 dark:bg-red-900/20 dark:text-red-400"

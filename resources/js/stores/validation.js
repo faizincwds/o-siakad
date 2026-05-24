@@ -1,7 +1,7 @@
 export default function validationJS(oldPassword = '', oldConfirmPassword = '') {
     return {
-        password: oldPassword,
-        confirmPassword: oldConfirmPassword,
+        password: oldPassword || '',
+        confirmPassword: oldConfirmPassword || '',
         showPassword: false,
         showConfirmPassword: false,
         capslock: false,
@@ -15,19 +15,40 @@ export default function validationJS(oldPassword = '', oldConfirmPassword = '') 
             this.confirmPassword = this.password;
         },
 
-        copyPassword() {
-            navigator.clipboard.writeText(this.password);
+        async copyPassword() {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(this.password);
+                } else {
+                    // fallback
+                    const textArea = document.createElement('textarea');
+                    textArea.value = this.password;
+
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+
+                    document.execCommand('copy');
+
+                    document.body.removeChild(textArea);
+                }
+            } catch (error) {
+                console.error('Copy failed:', error);
+            }
         },
 
         get passwordMatch() {
-            return this.password === this.confirmPassword && this.confirmPassword.length > 0;
+            return (
+                this.password === this.confirmPassword &&
+                this.confirmPassword.length > 0
+            );
         },
 
-        get hasUppercase() { return /[A-Z]/.test(this.password); },
-        get hasLowercase() { return /[a-z]/.test(this.password); },
-        get hasNumber() { return /[0-9]/.test(this.password); },
-        get hasSymbol() { return /[^A-Za-z0-9]/.test(this.password); },
-        get hasMinLength() { return this.password.length >= 8; },
+        get hasUppercase() { return /[A-Z]/.test(this.password || ''); },
+        get hasLowercase() { return /[a-z]/.test(this.password || ''); },
+        get hasNumber() { return /[0-9]/.test(this.password || ''); },
+        get hasSymbol() { return /[^A-Za-z0-9]/.test(this.password || ''); },
+        get hasMinLength() { return (this.password || '').length >= 6; },
 
         get strength() {
             let score = 0;
@@ -60,8 +81,8 @@ export default function validationJS(oldPassword = '', oldConfirmPassword = '') 
             if (this.strength <= 4) return 'text-yellow-500';
             return 'text-green-500';
         }
-        
-        
+
+
     };
 }
 
