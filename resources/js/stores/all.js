@@ -3,7 +3,7 @@ export default function themesUI() {
     /* ─── State ─── */
     activePage: window.appConfig.activePage,
     routes: window.appConfig.routes,
-    collapsed: false,
+    collapsed: JSON.parse(localStorage.getItem('sidebar')) ?? false,
     _sidebarWidth: 260,
     windowWidth: window.innerWidth,
     mobileSidebar: false,
@@ -13,6 +13,7 @@ export default function themesUI() {
     theme: 'light',
     isDark: false,
     toasts: [],
+    loaded: false,
 
     /* ─── Menu Definition ─── */
     menuItems: window.appConfig.menuItems,
@@ -86,6 +87,7 @@ export default function themesUI() {
         this.mobileSidebar = !this.mobileSidebar;
       } else {
         this.collapsed = !this.collapsed;
+        localStorage.setItem('sidebar', JSON.stringify(this.collapsed));
       }
     },
 
@@ -108,7 +110,7 @@ export default function themesUI() {
     toast(msg, type = 'info') {
       const id = Date.now() + Math.random();
       this.toasts.push({ id, msg, type, out: false });
-      
+
       setTimeout(() => {
         const t = this.toasts.find(x => x.id === id);
         if (t) t.out = true;
@@ -147,6 +149,10 @@ export default function themesUI() {
       window.addEventListener('resize', () => {
         this.windowWidth = window.innerWidth;
       });
+
+      this.$nextTick(() => {
+        this.loaded = true
+    })
 
       // Auto-open active parent menus
       this.menuItems.forEach((item, idx) => {

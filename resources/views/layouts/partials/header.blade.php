@@ -53,16 +53,16 @@
                class="absolute right-0 top-full mt-1.5 bg-card border border-card-border rounded-xl shadow-lg dark:shadow-black/40
                       min-w-42.5 z-50 py-1">
             <button @click="navigate('profil'); userDropdown = false"
-                    class="flex items-center gap-2 px-3 py-2 text-[12.5px] text-muted hover:bg-surface hover:text-foreground w-full transition-colors">
+                    class="flex items-center gap-2 px-3 py-2 text-[12.5px] rounded-lg text-muted hover:bg-surface hover:text-foreground w-full transition-colors">
               <span class="material-icons-outlined text-[17px]">person</span>Profil
             </button>
             <button @click="navigate('settings.index'); userDropdown = false"
-                    class="flex items-center gap-2 px-3 py-2 text-[12.5px] text-muted hover:bg-surface hover:text-foreground w-full transition-colors">
+                    class="flex items-center gap-2 px-3 py-2 text-[12.5px] rounded-lg text-muted hover:bg-surface hover:text-foreground w-full transition-colors">
               <span class="material-icons-outlined text-[17px]">settings</span>Pengaturan
             </button>
             <div class="border-t border-border my-1"></div>
             <button @click="toast('Berhasil keluar','info'); userDropdown = false"
-                    class="flex items-center gap-2 px-3 py-2 text-[12.5px] text-muted hover:bg-surface hover:text-foreground w-full transition-colors">
+                    class="flex items-center gap-2 px-3 py-2 text-[12.5px] rounded-lg text-muted hover:bg-surface hover:text-foreground w-full transition-colors">
               <span class="material-icons-outlined text-[17px]">logout</span>Keluar
             </button>
           </div>

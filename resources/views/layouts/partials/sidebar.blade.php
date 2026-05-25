@@ -1,10 +1,12 @@
   <aside
-    class="fixed top-0 left-0 bottom-0 z-50 w-65 overflow-x-hidden
-           bg-sidebar border-r border-sidebar-border
-           transition-transform duration-300 ease-in-out
-           max-lg:-translate-x-full
-           flex flex-col"
-    :class="{ 'lg:-translate-x-full': collapsed, 'max-lg:translate-x-0': mobileSidebar }">
+    class="fixed top-0 left-0 bottom-0 z-50 w-65 overflow-x-hidden bg-sidebar border-r border-sidebar-border max-lg:-translate-x-full flex flex-col"
+    :class="[
+        loaded ? 'transition-transform duration-300 ease-in-out' : '',
+        {
+            'lg:-translate-x-full': collapsed,
+            'max-lg:translate-x-0': mobileSidebar
+        }
+    ]">
 
     <!-- ─── Logo ─── -->
     <div class="flex items-center gap-2.5 px-4 h-17 border-b border-sidebar-border">
@@ -26,7 +28,7 @@
             <template x-if="!item.children">
                 <button
                 @click="navigate(item.route)"
-                class="flex items-center gap-2.5 px-4 py-2 mx-2 rounded-md text-[12.5px] font-medium
+                class="flex items-center gap-2.5 px-4 py-2 mx-2 text-[13.5px] font-medium
                         text-sidebar-muted hover:bg-black/4 hover:text-sidebar-text
                         dark:hover:bg-white/6 dark:hover:text-sidebar-text
                         transition-all duration-150 w-full text-left select-none"
@@ -41,7 +43,7 @@
                 <div>
                 <button
                     @click="toggleSubmenu(idx)"
-                    class="flex items-center gap-2.5 px-4 py-2 mx-2 rounded-md text-[12.5px] font-medium
+                    class="flex items-center gap-2.5 px-4 py-2 mx-2 text-[13.5px] font-medium
                         text-sidebar-muted hover:bg-black/4 hover:text-sidebar-text
                         dark:hover:bg-white/6 dark:hover:text-sidebar-text
                         transition-all duration-150 w-full text-left select-none"
@@ -57,7 +59,7 @@
                     <template x-for="child in item.children" :key="child.route">
                         <button
                             @click="navigate(child.route)"
-                            class="flex items-center gap-1.5 pl-12 pr-4 py-1.5 mx-2 rounded-md text-[12.5px]
+                            class="flex items-center gap-1.5 pl-12 pr-4 py-1.5 mx-2 text-[13.5px]
                                 transition-all duration-150 w-full text-left select-none"
                             :class="activePage === child.route
                                 ? 'bg-brand-500/10 text-brand-600 dark:text-brand-400 font-medium'

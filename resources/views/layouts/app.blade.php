@@ -5,19 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> {{ $meta['title'] ?? config('app.name') }} </title>
     <!-- Styles / Scripts -->
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
   </head>
 
   <body
     x-data="themesUI()"
+    x-cloak
     class="font-body bg-surface text-foreground antialiased overflow-x-hidden transition-colors duration-300"
     x-effect="document.documentElement.classList.toggle('dark', isDark)"
     @keydown.escape="mobileSidebar = false; userDropdown = false"
     @resize.window="windowWidth = window.innerWidth; if (windowWidth > 1024) mobileSidebar = false">
 
   <div
-    x-show="mobileSidebar"
+    x-show="loaded && mobileSidebar"
+    x-cloak
     x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0"
     x-transition:enter-end="opacity-100"
@@ -29,7 +36,8 @@
   </div>
 
   <div
-    class="min-h-screen flex flex-col transition-[margin] duration-300 ease-in-out"
+    class="min-h-screen flex flex-col"
+    :class="loaded ? 'transition-[margin] duration-300 ease-in-out' : ''"
     :style="`margin-left: ${sidebarOffset}px`">
 
         @include('layouts.partials.header')
@@ -39,10 +47,16 @@
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-1 text-[11px] text-muted mb-4 flex-wrap" aria-label="Breadcrumb">
             <template x-for="(crumb, i) in breadcrumbs" :key="i">
-            <span class="contents">
-                <span :class="{ 'text-foreground font-semibold': i === breadcrumbs.length - 1 }" x-text="crumb"></span>
-                <span x-show="i < breadcrumbs.length - 1" class="material-icons-outlined text-[11px]">chevron_right</span>
-            </span>
+                <span class="contents">
+                    <span
+                        :class="{ 'text-foreground font-semibold': i === breadcrumbs.length - 1 }"
+                        x-text="crumb">
+                    </span>
+                    <span
+                        x-show="i < breadcrumbs.length - 1"
+                        class="material-icons-outlined text-[11px]">chevron_right
+                    </span>
+                </span>
             </template>
         </nav>
 
@@ -60,12 +74,17 @@
         <!-- Empty Content Area -->
         <div class="bg-card border border-card-border rounded-xl p-8 text-center transition-colors duration-300">
             <div class="w-16 h-16 rounded-2xl bg-surface mx-auto mb-4 flex items-center justify-center">
-            <span class="material-icons-outlined text-[32px] text-muted/40" x-text="pageIcon || 'widgets'"></span>
+                <span class="material-icons-outlined text-[32px] text-muted/40" x-text="pageIcon || 'widgets'"></span>
             </div>
             <h3 class="font-display font-bold text-sm text-foreground mb-1" x-text="pageTitle || 'Dashboard'"></h3>
             <p class="text-[11px] text-muted max-w-xs mx-auto">Konten halaman akan ditampilkan di sini. Pilih menu di sidebar untuk bernavigasi.</p>
-                @yield('content')
-           
+
+            @if(View::hasSection('content'))
+                    @yield('content')
+            @else
+                    ...
+            @endif
+
         </div>
         </main>
 
@@ -99,7 +118,9 @@
                 })
                 ->filter()
                 ->mapWithKeys(fn ($route) => [
-                    $route => route($route)
+                    $route => Route::has($route)
+                        ? route($route)
+                        : '#'
                 ])
         ),
 
