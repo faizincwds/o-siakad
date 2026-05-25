@@ -4,9 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>@yield('title', 'Authentication')</title>
-
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @stack('styles')
@@ -14,6 +17,7 @@
 
 <body
     x-data="themesAuth()"
+    x-cloak
     class="
         min-h-screen
         bg-white

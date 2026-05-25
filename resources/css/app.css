@@ -14,6 +14,28 @@
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
 
+  --text-h1: 2.25rem;   /* 36px */
+  --text-h2: 1.875rem;  /* 30px */
+  --text-h3: 1.5rem;    /* 24px */
+  --text-h4: 1.25rem;   /* 20px */
+  --text-h5: 1.125rem;  /* 18px */
+  --text-h6: 1rem;      /* 16px */
+
+  --lh-h1: 2.5rem;
+  --lh-h2: 2.25rem;
+  --lh-h3: 2rem;
+  --lh-h4: 1.75rem;
+  --lh-h5: 1.5rem;
+  --lh-h6: 1.5rem;
+
+  --fw-h: 700;
+
+  --text-title-lg: 1.5rem;
+  --text-title-md: 1.25rem;
+  --text-title-sm: 1.125rem;
+  --text-body: 0.875rem;
+  --text-caption: 0.75rem;
+
   --color-brand-50: #ecfdf5;
   --color-brand-100: #d1fae5;
   --color-brand-200: #a7f3d0;
@@ -71,15 +93,6 @@
 .submenu.open { grid-template-rows: 1fr; }
 .submenu > div { overflow: hidden; }
 
-/* Animasi View Transition untuk menghilangkan efek berkedip */
-::view-transition-old(root) {
-  animation: fade-out 0.15s ease-in-out;
-}
-
-::view-transition-new(root) {
-  animation: fade-in 0.15s ease-in-out;
-}
-
 @keyframes fade-out {
   from { opacity: 1; }
   to { opacity: 0; }
@@ -94,12 +107,46 @@
         font-family: var(--font-body);
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    h1 {
+        font-size: var(--text-h1);
+        line-height: var(--lh-h1);
+        font-weight: 700;
+        font-family: var(--font-display);
+        color: var(--color-foreground);
+    }
+
+    h2 {
+        font-size: var(--text-h2);
+        line-height: var(--lh-h2);
+        font-weight: 700;
+        font-family: var(--font-display);
+        color: var(--color-foreground);
+    }
+
+    h3 {
+        font-size: var(--text-h3);
+        line-height: var(--lh-h3);
+        font-weight: 600;
         font-family: var(--font-display);
     }
+
+    h4 {
+        font-size: var(--text-h4);
+        line-height: var(--lh-h4);
+        font-weight: 600;
+    }
+
+    h5 {
+        font-size: var(--text-h5);
+        line-height: var(--lh-h5);
+        font-weight: 500;
+    }
+
+    h6 {
+        font-size: var(--text-h6);
+        line-height: var(--lh-h6);
+        font-weight: 500;
+        color: var(--color-muted);
+    }
+
 }
