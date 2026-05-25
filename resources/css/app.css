@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 @import "tailwindcss";
-
 @source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
 @source "../../storage/framework/views/*.php";
 @source "../**/*.blade.php";
@@ -35,6 +34,10 @@
   --text-title-sm: 1.125rem;
   --text-body: 0.875rem;
   --text-caption: 0.75rem;
+
+  --icon-sm: 14px;
+  --icon-md: 16px;
+  --icon-lg: 24px;
 
   --color-brand-50: #ecfdf5;
   --color-brand-100: #d1fae5;
@@ -150,3 +153,5 @@
     }
 
 }
+
+

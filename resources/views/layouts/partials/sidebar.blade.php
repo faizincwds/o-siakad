@@ -31,7 +31,7 @@
                         dark:hover:bg-white/6 dark:hover:text-sidebar-text
                         transition-all duration-150 w-full text-left select-none"
                 :class="{ 'bg-brand-500/8 text-brand-700 dark:text-brand-100 shadow-[inset_3px_0_0_var(--color-brand-500)]': activePage === item.route }">
-                <span class="material-icons-outlined text-[18px] shrink-0" x-text="item.icon"></span>
+                <span class="material-icons-outlined text-[16px] shrink-0" x-text="item.icon"></span>
                 <span class="truncate" x-text="item.label"></span>
                 </button>
             </template>
@@ -46,9 +46,9 @@
                         dark:hover:bg-white/6 dark:hover:text-sidebar-text
                         transition-all duration-150 w-full text-left select-none"
                     :class="{ 'bg-brand-500/8 text-brand-700 dark:text-brand-100 shadow-[inset_2px_0_0_var(--color-brand-500)]': isParentActive(item) }">
-                    <span class="material-icons-outlined text-[18px] shrink-0" x-text="item.icon"></span>
+                    <span class="material-icons-outlined text-[16px] shrink-0" x-text="item.icon"></span>
                     <span class="truncate flex-1" x-text="item.label"></span>
-                    <span class="material-icons-outlined text-[14px] opacity-30 transition-transform duration-200"
+                    <span class="material-icons-outlined text-[16px] opacity-30 transition-transform duration-200"
                         :class="{ 'rotate-180 opacity-80': openMenus.includes(idx) }">expand_more</span>
                 </button>
                 <!-- Submenu with CSS grid animation -->
