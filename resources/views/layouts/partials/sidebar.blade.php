@@ -1,12 +1,10 @@
   <aside
-    class="fixed top-0 left-0 bottom-0 z-50 w-65 overflow-x-hidden bg-sidebar border-r border-sidebar-border max-lg:-translate-x-full flex flex-col"
-    :class="[
-        loaded ? 'transition-transform duration-300 ease-in-out' : '',
-        {
-            'lg:-translate-x-full': collapsed,
-            'max-lg:translate-x-0': mobileSidebar
-        }
-    ]">
+    class="fixed top-0 left-0 bottom-0 z-50 w-65 overflow-x-hidden
+           bg-sidebar border-r border-sidebar-border
+           max-lg:-translate-x-full
+           flex flex-col"
+    x-cloak
+    :class="{ 'lg:-translate-x-full': collapsed, 'max-lg:translate-x-0': mobileSidebar }">
 
     <!-- ─── Logo ─── -->
     <div class="flex items-center gap-2.5 px-4 h-17 border-b border-sidebar-border">

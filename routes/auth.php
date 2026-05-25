@@ -2,21 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/maintenance', function(){
-    return view('layouts.errors.maintenance');
-})->name('maintenance');
+Route::middleware('web')->group(function () {
+    Route::get('/login', fn () => view('auth.login'))->name('login');
+});
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+Route::middleware('web')->group(function () {
+    Route::get('/register', fn () => view('auth.register'))->name('register');
+});
+Route::middleware('web')->group(function () {
+    Route::get('/forgot', fn () => view('auth.forgot-password'))->name('forgot');
+});
+Route::middleware('web')->group(function () {
+    Route::get('/verify', fn () => view('auth.verification'))->name('verify');
+});
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
-Route::get('/forgot', function () {
-    return view('auth.forgot-password');
-})->name('forgot');
-Route::get('/verify', function () {
-    return view('auth.verification');
-})->name('verify');
