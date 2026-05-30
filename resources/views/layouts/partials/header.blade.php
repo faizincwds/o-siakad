@@ -8,8 +8,12 @@
           <span class="material-icons-outlined text-[18px] text-muted">menu</span>
         </button>
         <div class="hidden sm:block">
-          <div class="font-display font-bold text-[13px] leading-tight text-foreground">STITUSA BANJARNEGARA</div>
-          <div class="text-[9.5px] font-medium text-muted">Semester Genap 2025/2026</div>
+          <div class="font-display font-bold text-sm leading-tight text-foreground">STITUSA BANJARNEGARA</div>
+          <div class="flex items-center gap-1 text-xs font-medium text-muted">
+            <span class="material-icons-outlined icon-sm text-muted"> calendar_month</span>
+                Semester Genap 2025/2026
+            <span class="ml-1.5 inline-flex items-center gap-1 text-brand-600 bg-brand-50 px-1.5 py-0.5 rounded-full text-[9px] font-bold">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span>AKTIF</span></div>
         </div>
       </div>
 

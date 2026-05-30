@@ -15,14 +15,35 @@ class SettingController extends Controller
     public function index(GeneralSettings $settings)
     {
         $meta = MenuHelper::meta();
+        // dd($settings);
         // halaman utama
         return view(
-            'pages.settings.index', compact('meta')
-        );   
+            'pages.settings.index', compact('meta', 'settings')
+        );
+    }
+
+    public function profile(GeneralSettings $settings)
+    {
+        $meta = MenuHelper::meta();
+        // dd($settings);
+        // halaman profil
+        return view(
+            'pages.settings.profile', compact('meta', 'settings')
+        );
     }
 
     public function update(Request $request, GeneralSettings $settings)
     {
+        // Validasi
+        $validated = $request->validate([
+            'nama_aplikasi' => 'required|string|max:255',
+            'nama_kampus'   => 'required|string|max:255',
+            'email'         => 'nullable|email|max:255',
+            'telepon'       => 'nullable|string|max:20',
+            'alamat'        => 'nullable|string',
+            'maintenance_mode' => 'nullable|boolean',
+        ]);
+
         $settings->nama_aplikasi = $request->input('nama_aplikasi');
         $settings->nama_kampus = $request->input('nama_kampus');
         $settings->email = $request->input('email');

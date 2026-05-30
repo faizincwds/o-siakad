@@ -72,20 +72,12 @@
         </div>
 
         <!-- Empty Content Area -->
-        <div class="bg-card border border-card-border rounded-xl p-8 text-center transition-colors duration-300">
-            <div class="w-16 h-16 rounded-2xl bg-surface mx-auto mb-4 flex items-center justify-center">
-                <span class="material-icons-outlined text-[32px] text-muted/40" x-text="pageIcon || 'widgets'"></span>
-            </div>
-            <h3 class="font-display font-bold text-sm text-foreground mb-1" x-text="pageTitle || 'Dashboard'"></h3>
-            <p class="text-[11px] text-muted max-w-xs mx-auto">Konten halaman akan ditampilkan di sini. Pilih menu di sidebar untuk bernavigasi.</p>
-
             @if(View::hasSection('content'))
                     @yield('content')
             @else
                     ...
             @endif
 
-        </div>
         </main>
 
         <footer class="px-5 py-2.5 text-center border-t border-border shrink-0">

@@ -38,19 +38,16 @@
                     @csrf
                     <!-- Email -->
                     <div>
-                        <label class="mb-2.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Email <span class="text-red-500">*</span>
-                        </label>
-
                         <div class="relative">
-                            <input
-                                type="email"
+                            <x-input
                                 name="email"
+                                type="email"
+                                label="Email"
                                 placeholder="Enter your email"
+                                size="md"
+                                icon="email"
                                 value="{{ old('email') }}"
-                                class="w-full rounded-lg border border-gray-300 bg-transparent py-3 pl-5 pr-12 text-gray-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-gray-700 dark:bg-gray-800/50 dark:text-white"
-                                required
-                            >
+                                required="true" />
 
                             <span class="absolute right-4 top-3.5 text-gray-400">
                                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -75,7 +72,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <x-button type="submit" variant="primary" size="md" class="w-full">
+                    <x-button type="submit" variant="primary" size="sm" class="w-full">
                         <span class="material-icons-outlined text-[20px]">lock_reset</span>
                         <span>Reset Password</span>
                     </x-button>

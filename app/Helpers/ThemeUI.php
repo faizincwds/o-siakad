@@ -10,19 +10,23 @@ class ThemeUI
             /* ─── Menu Definition ─── */
             'menuItems' => [
                 [
-                    'route'      => 'dashboard', 
-                    'icon'       => 'dashboard', 
-                    'label'      => 'Dashboard', 
+                    'route'      => 'dashboard',
+                    'icon'       => 'dashboard',
+                    'label'      => 'Dashboard',
                     'permission' => null // Allowed for all
                 ],
                 [
-                    'key'      => 'settings', 
-                    'icon'     => 'settings', 
-                    'label'    => 'Settings', 
+                    'key'      => 'settings',
+                    'icon'     => 'settings',
+                    'label'    => 'Settings',
                     'children' => [
                         [
-                            'route' => 'settings.index', 
-                            'label' => 'Settings'
+                            'route' => 'settings.index',
+                            'label' => 'Pengaturan'
+                        ],
+                        [
+                            'route' => 'settings.profile',
+                            'label' => 'Profil'
                         ],
                     ]
                 ],
@@ -31,16 +35,22 @@ class ThemeUI
             /* ─── Page Meta ─── */
             'pageMeta' => [
                 'dashboard'      => [
-                    'icon'   => 'dashboard', 
-                    'title'  => 'Academic Dashboard', 
-                    'desc'   => 'Summary of university data and activities', 
+                    'icon'   => 'dashboard',
+                    'title'  => 'Dashboard',
+                    'desc'   => 'Ringkasan informasi penting',
                     'crumbs' => ['Dashboard']
                 ],
                 'settings.index' => [
-                    'icon'   => 'settings', 
-                    'title'  => 'Settings', 
-                    'desc'   => 'System configuration', 
-                    'crumbs' => ['Settings', 'Settings']
+                    'icon'   => 'settings',
+                    'title'  => 'Pengaturan Sistem',
+                    'desc'   => 'Konfigurasi aplikasi dan akun',
+                    'crumbs' => ['Settings', 'Pengaturan']
+                ],
+                'settings.profile' => [
+                    'icon'   => 'person',
+                    'title'  => 'Profil Perguruan Tinggi',
+                    'desc'   => 'Kelola informasi profil Anda',
+                    'crumbs' => ['Settings', 'Profil']
                 ],
             ],
 

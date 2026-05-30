@@ -52,13 +52,55 @@
     "src": "_instrument-sans-600-normal-DMks36a2.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-Otygp-fv.css",
+    "file": "assets/app-DzIEc7b3.css",
     "name": "app",
     "names": [
       "app.css"
     ],
     "src": "resources/css/app.css",
-    "isEntry": true
+    "isEntry": true,
+    "assets": [
+      "assets/PlusJakartaSans-Regular-DfrV1bCh.woff2",
+      "assets/PlusJakartaSans-Medium-DbsKaHcG.woff2",
+      "assets/PlusJakartaSans-SemiBold-DAjk3C1M.woff2",
+      "assets/PlusJakartaSans-Bold-v6XQzP5s.woff2",
+      "assets/SpaceGrotesk-Regular-CJ-V5oYT.woff2",
+      "assets/SpaceGrotesk-Medium-lFbtlQH6.woff2",
+      "assets/SpaceGrotesk-SemiBold-DjKNqYRj.woff2",
+      "assets/SpaceGrotesk-Bold-RjhwGPKo.woff2"
+    ]
+  },
+  "resources/css/fonts/PlusJakartaSans/PlusJakartaSans-Bold.woff2": {
+    "file": "assets/PlusJakartaSans-Bold-v6XQzP5s.woff2",
+    "src": "resources/css/fonts/PlusJakartaSans/PlusJakartaSans-Bold.woff2"
+  },
+  "resources/css/fonts/PlusJakartaSans/PlusJakartaSans-Medium.woff2": {
+    "file": "assets/PlusJakartaSans-Medium-DbsKaHcG.woff2",
+    "src": "resources/css/fonts/PlusJakartaSans/PlusJakartaSans-Medium.woff2"
+  },
+  "resources/css/fonts/PlusJakartaSans/PlusJakartaSans-Regular.woff2": {
+    "file": "assets/PlusJakartaSans-Regular-DfrV1bCh.woff2",
+    "src": "resources/css/fonts/PlusJakartaSans/PlusJakartaSans-Regular.woff2"
+  },
+  "resources/css/fonts/PlusJakartaSans/PlusJakartaSans-SemiBold.woff2": {
+    "file": "assets/PlusJakartaSans-SemiBold-DAjk3C1M.woff2",
+    "src": "resources/css/fonts/PlusJakartaSans/PlusJakartaSans-SemiBold.woff2"
+  },
+  "resources/css/fonts/SpaceGrotesk/SpaceGrotesk-Bold.woff2": {
+    "file": "assets/SpaceGrotesk-Bold-RjhwGPKo.woff2",
+    "src": "resources/css/fonts/SpaceGrotesk/SpaceGrotesk-Bold.woff2"
+  },
+  "resources/css/fonts/SpaceGrotesk/SpaceGrotesk-Medium.woff2": {
+    "file": "assets/SpaceGrotesk-Medium-lFbtlQH6.woff2",
+    "src": "resources/css/fonts/SpaceGrotesk/SpaceGrotesk-Medium.woff2"
+  },
+  "resources/css/fonts/SpaceGrotesk/SpaceGrotesk-Regular.woff2": {
+    "file": "assets/SpaceGrotesk-Regular-CJ-V5oYT.woff2",
+    "src": "resources/css/fonts/SpaceGrotesk/SpaceGrotesk-Regular.woff2"
+  },
+  "resources/css/fonts/SpaceGrotesk/SpaceGrotesk-SemiBold.woff2": {
+    "file": "assets/SpaceGrotesk-SemiBold-DjKNqYRj.woff2",
+    "src": "resources/css/fonts/SpaceGrotesk/SpaceGrotesk-SemiBold.woff2"
   },
   "resources/js/app.js": {
     "file": "assets/app-CoWgK6r7.js",

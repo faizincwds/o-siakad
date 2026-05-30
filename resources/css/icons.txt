@@ -1,0 +1,160 @@
+Berikut daftar icon `Material Icons Outlined` yang cocok untuk sistem SIAKAD kampus/sekolah kamu.
+Semua ini bisa langsung dipakai dengan:
+
+```html id="2zz4cz"
+<span class="material-icons-outlined">dashboard</span>
+```
+
+---
+
+# 🎓 Akademik
+
+| Menu              | Icon              |
+| ----------------- | ----------------- |
+| Dashboard         | `dashboard`       |
+| Mahasiswa         | `school`          |
+| Dosen             | `groups`          |
+| Program Studi     | `account_balance` |
+| Fakultas          | `domain`          |
+| Mata Kuliah       | `menu_book`       |
+| Jadwal Kuliah     | `calendar_month`  |
+| KRS               | `assignment`      |
+| KHS               | `grading`         |
+| Nilai             | `leaderboard`     |
+| Transkrip         | `description`     |
+| Kurikulum         | `auto_stories`    |
+| Kalender Akademik | `event_note`      |
+| Presensi          | `fact_check`      |
+| Ruang Kelas       | `meeting_room`    |
+
+---
+
+# 💰 Keuangan
+
+| Menu               | Icon                     |
+| ------------------ | ------------------------ |
+| Pembayaran         | `payments`               |
+| Tagihan            | `receipt_long`           |
+| Riwayat Pembayaran | `history`                |
+| Beasiswa           | `workspace_premium`      |
+| Keuangan           | `account_balance_wallet` |
+
+---
+
+# 👨‍💼 Administrasi
+
+| Menu              | Icon                   |
+| ----------------- | ---------------------- |
+| Pengguna          | `group`                |
+| Role & Permission | `admin_panel_settings` |
+| Pengaturan        | `settings`             |
+| Profil            | `person`               |
+| Notifikasi        | `notifications`        |
+| Surat             | `mail`                 |
+| Dokumen           | `folder_open`          |
+| Arsip             | `inventory_2`          |
+
+---
+
+# 📊 Laporan & Statistik
+
+| Menu      | Icon           |
+| --------- | -------------- |
+| Statistik | `monitoring`   |
+| Grafik    | `insert_chart` |
+| Laporan   | `analytics`    |
+| Export    | `download`     |
+| Import    | `upload_file`  |
+
+---
+
+# 🏫 Kampus
+
+| Menu         | Icon            |
+| ------------ | --------------- |
+| Kampus       | `apartment`     |
+| Gedung       | `business`      |
+| Perpustakaan | `local_library` |
+| Laboratorium | `science`       |
+
+---
+
+# 🔐 Auth
+
+| Menu       | Icon            |
+| ---------- | --------------- |
+| Login      | `login`         |
+| Logout     | `logout`        |
+| Password   | `lock`          |
+| Verifikasi | `verified_user` |
+
+---
+
+# ⚡ Contoh Sidebar Modern
+
+```html id="ozotxr"
+<a href="#" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-brand-50">
+    <span class="material-icons-outlined text-base">
+        dashboard
+    </span>
+
+    <span>Dashboard</span>
+</a>
+```
+
+---
+
+# 🚀 Rekomendasi ukuran icon
+
+| Posisi       | Class         |
+| ------------ | ------------- |
+| Sidebar      | `text-[20px]` |
+| Navbar       | `text-[22px]` |
+| Table Action | `text-[18px]` |
+| Button kecil | `text-sm`     |
+
+---
+
+# 💡 Rekomendasi terbaik untuk SIAKAD
+
+Gunakan konsisten:
+
+```html id="vw8m2c"
+class="material-icons-outlined text-[20px]"
+```
+
+karena:
+
+* lebih clean
+* tidak perlu utility tambahan
+* responsive Tailwind langsung jalan
+
+---
+
+# 🔥 Kombinasi warna yang bagus
+
+```html id="9c7l1o"
+<span class="material-icons-outlined text-sidebar-muted">
+school
+</span>
+```
+
+hover:
+
+```html id="ynkq3n"
+hover:text-brand-500
+```
+
+---
+
+# 🚀 Kalau mau lebih lanjut
+
+Aku juga bisa bantu:
+
+* mapping icon lengkap semua menu SIAKAD
+* sidebar TailAdmin style
+* icon active state
+* animated icon hover
+* menu tree akademik lengkap
+
+tinggal bilang 👍

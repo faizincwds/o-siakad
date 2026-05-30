@@ -1,6 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 @import "tailwindcss";
 @source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
 @source "../../storage/framework/views/*.php";
@@ -34,10 +32,15 @@
   --text-title-sm: 1.125rem;
   --text-body: 0.875rem;
   --text-caption: 0.75rem;
+  --text-xs: 11px;
+  --text-sm: 12.5px;
+  --text-md: 14px;
 
-  --icon-sm: 14px;
-  --icon-md: 16px;
-  --icon-lg: 24px;
+  --icon-xs: 10px;
+  --icon-sm: 12px;
+  --icon-md: 18px;
+  --icon-lg: 20px;
+  --icon-xl: 24px;
 
   --color-brand-50: #ecfdf5;
   --color-brand-100: #d1fae5;
@@ -76,7 +79,7 @@
   --color-sidebar-dim: rgba(209, 250, 229, 0.781);
 
   --color-surface: #0f172a;
-  --color-card: #1a2332;
+  --color-card: #0e172d;
   --color-card-border: #2a3a4a;
   --color-foreground: #e2e8f0;
   --color-muted: #94a3b8;
@@ -105,6 +108,136 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+@font-face {
+  font-family: 'Material Icons Outlined';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v110/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2)
+    format('woff2');
+}
+
+/*PlusJakartaSans*/
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('fonts/PlusJakartaSans/PlusJakartaSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('fonts/PlusJakartaSans/PlusJakartaSans-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('fonts/PlusJakartaSans/PlusJakartaSans-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('fonts/PlusJakartaSans/PlusJakartaSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Space Grotesk */
+
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('fonts/SpaceGrotesk/SpaceGrotesk-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('fonts/SpaceGrotesk/SpaceGrotesk-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('fonts/SpaceGrotesk/SpaceGrotesk-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('fonts/SpaceGrotesk/SpaceGrotesk-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@layer components {
+  .material-icons-outlined {
+    font-family: 'Material Icons Outlined';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    direction: ltr;
+    speak: never;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@utility text-xs {
+  font-size: var(--text-xs);
+}
+
+@utility text-sm {
+  font-size: var(--text-sm);
+}
+
+@utility text-md {
+  font-size: var(--text-md);
+}
+
+@utility icon-xs {
+  font-size: var(--icon-xs);
+}
+
+@utility icon-sm {
+  font-size: var(--icon-sm);
+}
+
+@utility icon-md {
+  font-size: var(--icon-md);
+}
+
+@utility icon-lg {
+  font-size: var(--icon-lg);
+}
+
+@utility icon-xl {
+  font-size: var(--icon-xl);
+}
+
 @layer base {
     body {
         font-family: var(--font-body);
