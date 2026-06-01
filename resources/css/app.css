@@ -36,8 +36,8 @@
   --text-sm: 12.5px;
   --text-md: 14px;
 
-  --icon-xs: 10px;
-  --icon-sm: 12px;
+  --icon-xs: 12px;
+  --icon-sm: 12.5px;
   --icon-md: 18px;
   --icon-lg: 20px;
   --icon-xl: 24px;
@@ -191,6 +191,7 @@
     font-family: 'Material Icons Outlined';
     font-weight: normal;
     font-style: normal;
+    font-size: 14px;
     line-height: 1;
     letter-spacing: normal;
     text-transform: none;
@@ -206,17 +207,6 @@
   }
 }
 
-@utility text-xs {
-  font-size: var(--text-xs);
-}
-
-@utility text-sm {
-  font-size: var(--text-sm);
-}
-
-@utility text-md {
-  font-size: var(--text-md);
-}
 
 @utility icon-xs {
   font-size: var(--icon-xs);

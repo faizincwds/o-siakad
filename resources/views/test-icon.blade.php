@@ -135,7 +135,8 @@
 
         <div class="flex flex-wrap gap-3">
 
-            <x-button.button icon="add">
+            <x-button.button 
+                icon="add">
                 Tambah
             </x-button.button>
 
@@ -190,7 +191,7 @@
             <input
                 type="text"
                 placeholder="Cari mahasiswa..."
-                class="w-full pl-10 pr-4 py-2 border rounded-lg"
+                class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg"
             >
 
         </div>
@@ -366,7 +367,7 @@
                 'logout','password'
             ] as $icon)
 
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2">
                     <x-icon name="{{ $icon }}" />
                     <span>{{ $icon }}</span>
                 </div>

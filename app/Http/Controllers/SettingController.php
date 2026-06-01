@@ -21,6 +21,16 @@ class SettingController extends Controller
             'pages.settings.index', compact('meta', 'settings')
         );
     }
+    
+    public function roles(GeneralSettings $settings)
+    {
+        $meta = MenuHelper::meta();
+        // dd($settings);
+        // halaman profil
+        return view(
+            'pages.settings.roles', compact('meta', 'settings')
+        );
+    }
 
     public function profile(GeneralSettings $settings)
     {

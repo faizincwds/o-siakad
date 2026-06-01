@@ -25,6 +25,10 @@ class ThemeUI
                             'label' => 'Pengaturan'
                         ],
                         [
+                            'route' => 'settings.roles',
+                            'label' => 'Hak Akses'
+                        ],
+                        [
                             'route' => 'settings.profile',
                             'label' => 'Profil'
                         ],
@@ -45,6 +49,12 @@ class ThemeUI
                     'title'  => 'Pengaturan Sistem',
                     'desc'   => 'Konfigurasi aplikasi dan akun',
                     'crumbs' => ['Settings', 'Pengaturan']
+                ],
+                'settings.roles' => [
+                    'icon'   => 'security',
+                    'title'  => 'Hak Akses',
+                    'desc'   => 'Manajemen hak akses pengguna sistem. ',
+                    'crumbs' => ['Settings', 'Roles']
                 ],
                 'settings.profile' => [
                     'icon'   => 'person',

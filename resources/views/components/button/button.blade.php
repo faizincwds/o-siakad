@@ -11,9 +11,10 @@
 @php
 
 $base = '
-inline-flex items-center justify-center gap-2
+inline-flex items-center justify-center gap-1
 font-medium transition-all duration-200
-focus:outline-none focus:ring-2
+focus:outline-none focus:ring-1
+cursor-pointer
 disabled:pointer-events-none disabled:opacity-50
 rounded-lg
 ';
