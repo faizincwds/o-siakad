@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('web')->group(function () {
+    Route::get('/test', fn () => view('test'))->name('test');
+    Route::get('/icon', fn () => view('test-icon'))->name('icon');
+});
+
+Route::middleware('web')->group(function () {
     Route::get('/login', fn () => view('auth.login'))->name('login');
 });
 
