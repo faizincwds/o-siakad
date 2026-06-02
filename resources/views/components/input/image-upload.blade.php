@@ -1,5 +1,6 @@
 @props([
-    'name'
+    'name',
+    'label' => 'Upload Gambar'
 ])
 
 <div x-data="{ preview: null }">

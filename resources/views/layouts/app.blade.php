@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> {{ $meta['title'] ?? config('app.name') }} </title>
+    <title> {{ $meta['title'] ? $meta['title'] . ' | ' . config('app.name') : config('app.name') }} </title>
     <!-- Styles / Scripts -->
     <style>
         [x-cloak] {

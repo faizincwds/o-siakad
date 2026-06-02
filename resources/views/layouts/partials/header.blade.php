@@ -6,8 +6,7 @@
     <!-- LEFT -->
     <div class="flex items-center gap-2.5">
 
-        <button
-            @click="toggleSidebar()"
+        <button @click="toggleSidebar()"
             class="w-8 h-8 rounded-lg bg-surface cursor-pointer hover:bg-border
             flex items-center justify-center transition-colors">
 
@@ -36,8 +35,7 @@
                     px-1.5 py-0.5 rounded-full
                     text-[9px] font-bold">
 
-                    <span
-                        class="w-1.5 h-1.5 rounded-full
+                    <span class="w-1.5 h-1.5 rounded-full
                         bg-brand-500 animate-pulse">
                     </span>
 
@@ -68,27 +66,19 @@
                 search
             </span>
 
-            <input
-                type="text"
-                placeholder="Cari menu..."
-                x-model="searchQuery"
-                @keydown.enter="doSearch()"
-                class="w-full bg-transparent border-none outline-none
-                text-[12.5px] text-foreground
+            <input type="text" placeholder="Cari menu..." x-model="searchQuery" @keydown.enter="doSearch()"
+                class="w-full bg-transparent border-none outline-none cursor-pointer focus:cursor-text
+                text-sm text-foreground
                 placeholder:text-muted">
 
         </div>
 
         <!-- NOTIFICATION -->
-        <div
-            class="relative"
-            x-data="{ notificationOpen:false }"
-            @click.outside="notificationOpen=false">
+        <div class="relative" x-data="{ notificationOpen: false }" @click.outside="notificationOpen=false">
 
-            <button
-                @click="notificationOpen=!notificationOpen"
+            <button @click="notificationOpen=!notificationOpen"
                 class="relative w-8 h-8 rounded-lg bg-surface hover:bg-border
-                flex items-center justify-center transition-colors">
+                flex items-center justify-center transition-colors cursor-pointer">
 
                 <span class="material-icons-outlined text-[18px] text-muted">
                     notifications_none
@@ -96,7 +86,7 @@
 
                 <span
                     class="absolute -top-0.5 -right-0.5
-                    min-w-[14px] h-[14px]
+                    min-w-3.5 h-3.5
                     px-1 rounded-full
                     bg-red-500 text-white
                     text-[8px] font-bold
@@ -106,17 +96,14 @@
                     3
 
                 </span>
-
             </button>
 
             <!-- DROPDOWN NOTIFICATION -->
-            <div
-                x-show="notificationOpen"
-                x-transition
+            <div x-show="notificationOpen" x-transition
                 class="absolute right-0 mt-2
-                w-90 max-w-[95vw]
+                w-65 max-w-[95vw]
                 bg-card border border-card-border
-                rounded-xl shadow-xl
+                rounded-md shadow-xl
                 overflow-hidden z-50">
 
                 <!-- HEADER -->
@@ -133,28 +120,21 @@
                         <p class="text-xs text-muted">
                             3 notifikasi belum dibaca
                         </p>
-
                     </div>
 
-                    <button
-                        class="text-xs text-brand-600 hover:underline">
-
+                    {{-- <button class="text-xs text-brand-600 hover:underline cursor-pointer">
                         Tandai semua dibaca
-
-                    </button>
-
+                    </button> --}}
                 </div>
 
                 <!-- LIST -->
                 <div class="max-h-96 overflow-y-auto">
-
                     <!-- ITEM -->
                     <button
-                        class="w-full text-left px-4 py-3
+                        class="w-full text-left px-4 py-3 cursor-pointer
                         hover:bg-surface transition-colors">
 
                         <div class="flex gap-3">
-
                             <div
                                 class="w-9 h-9 rounded-lg
                                 bg-blue-100 dark:bg-blue-500/10
@@ -163,7 +143,6 @@
                                 <span class="material-icons-outlined text-blue-600">
                                     school
                                 </span>
-
                             </div>
 
                             <div class="flex-1">
@@ -179,19 +158,14 @@
                                 <div class="text-[11px] text-muted mt-1">
                                     5 menit yang lalu
                                 </div>
-
                             </div>
-
                         </div>
-
                     </button>
 
                     <button
                         class="w-full text-left px-4 py-3
                         hover:bg-surface transition-colors">
-
                         <div class="flex gap-3">
-
                             <div
                                 class="w-9 h-9 rounded-lg
                                 bg-amber-100 dark:bg-amber-500/10
@@ -218,9 +192,7 @@
                                 </div>
 
                             </div>
-
                         </div>
-
                     </button>
 
                     <button
@@ -228,7 +200,6 @@
                         hover:bg-surface transition-colors">
 
                         <div class="flex gap-3">
-
                             <div
                                 class="w-9 h-9 rounded-lg
                                 bg-green-100 dark:bg-green-500/10
@@ -253,61 +224,43 @@
                                 <div class="text-[11px] text-muted mt-1">
                                     Kemarin
                                 </div>
-
                             </div>
-
                         </div>
-
                     </button>
-
                 </div>
 
                 <!-- FOOTER -->
-                <div
-                    class="border-t border-card-border
-                    px-4 py-3">
+                <div class="border-t border-card-border
+                    py-2">
 
                     <button
                         class="w-full text-center
-                        text-sm text-brand-600
+                        text-sm text-brand-600 cursor-pointer
                         font-medium hover:underline">
-
                         Lihat Semua Notifikasi
-
                     </button>
-
                 </div>
-
             </div>
-
         </div>
 
         <!-- THEME -->
-        <button
-            @click="cycleTheme()"
+        <button @click="cycleTheme()"
             class="w-8 h-8 rounded-lg bg-surface hover:bg-border
-            flex items-center justify-center transition-colors">
+            flex items-center justify-center transition-colors cursor-pointer">
 
-            <span
-                class="material-icons-outlined text-[18px] text-muted"
-                x-text="themeIcon">
+            <span class="material-icons-outlined text-[18px] text-muted" x-text="themeIcon">
             </span>
 
         </button>
 
         <!-- USER -->
-        <div
-            class="relative z-50"
-            @click.outside="userDropdown = false">
+        <div class="relative z-50" @click.outside="userDropdown = false">
 
-            <button
-                @click="userDropdown = !userDropdown"
+            <button @click="userDropdown = !userDropdown"
                 class="flex items-center gap-1 py-1 px-1.5
                 rounded-lg hover:bg-surface transition-colors">
 
-                <img
-                    src="https://picsum.photos/seed/neo-usr/40/40.jpg"
-                    class="w-8 h-8 rounded-full object-cover">
+                <img src="https://picsum.photos/seed/neo-usr/40/40.jpg" class="w-8 h-8 rounded-full object-cover">
 
                 <div class="hidden md:block text-left">
 
@@ -328,57 +281,48 @@
             </button>
 
             <!-- dropdown tetap -->
-            <div
-              x-show="userDropdown"
-              x-cloak
-              x-transition
-              class="absolute right-0 top-full mt-2
+            <div x-show="userDropdown" x-cloak x-transition
+                class="absolute right-0 top-full mt-2
                      w-42 bg-card
                      border border-card-border
                      rounded-xl shadow-xl
                      overflow-hidden
-                     z-[9999]">
-          
-              <div class="p-4 border-b border-card-border">
-                  <div class="font-semibold text-sm text-foreground">
-                      Administrator
-                  </div>
-                  <div class="text-xs text-muted">
-                      admin@stitusa.ac.id
-                  </div>
-              </div>
-          
-              <div class="p-2">
-                  <a href="#"
-                     class="flex text-sm items-center gap-2 px-1 py-2 rounded-lg hover:bg-brand-500">
-                      <span class="material-icons-outlined">person</span>
-                      Profil Saya
-                  </a>
-          
-                  <a href="#"
-                     class="flex text-sm items-center gap-2 px-1 py-2 rounded-lg hover:bg-surface">
-                      <span class="material-icons-outlined">settings</span>
-                      Pengaturan
-                  </a>
-          
-                  <a href="#"
-                     class="flex text-sm items-center gap-2 px-1 py-2 rounded-lg hover:bg-surface">
-                      <span class="material-icons-outlined">lock</span>
-                      Ubah Password
-                  </a>
-          
-                  <hr class="my-2 border-card-border">
-                  <button
-                      class="w-full text-sm flex items-center gap-2 px-1 py-2 rounded-lg
+                     z-9999">
+
+                <div class="p-4 border-b border-card-border">
+                    <div class="font-semibold text-sm text-foreground">
+                        Administrator
+                    </div>
+                    <div class="text-xs text-muted">
+                        admin@stitusa.ac.id
+                    </div>
+                </div>
+
+                <div class="py-1">
+                    <a href="#"
+                        class="flex text-sm items-center gap-2 px-3 py-2 hover:bg-surface dark:hover:bg-slate-700/50">
+                        <span class="material-icons-outlined">person</span>
+                        Profil
+                    </a>
+
+                    <a href="#"
+                        class="flex text-sm items-center gap-2 px-3 py-2 hover:bg-surface dark:hover:bg-slate-700/50">
+                        <span class="material-icons-outlined">settings</span>
+                        Pengaturan
+                    </a>
+
+                    <hr class="my-1 border-card-border">
+                    <button
+                        class="w-full text-sm flex items-center gap-2 px-3 py-2 cursor-pointer
                              text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10">
-                      <span class="material-icons-outlined">
-                          logout
-                      </span>
-                      Keluar
-                  </button>
-              </div>
-          </div>
-            
+                        <span class="material-icons-outlined">
+                            logout
+                        </span>
+                        Keluar
+                    </button>
+                </div>
+            </div>
+
         </div>
 
     </div>

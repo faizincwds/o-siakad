@@ -5,7 +5,13 @@
 @section('content')
 
 <div
-    x-data="{ tab: 'identitas' }"
+    x-data="{
+        tab: localStorage.getItem('settings-tab') || 'identitas',
+        setTab(name){
+            this.tab = name
+            localStorage.setItem('settings-tab', name)
+        }
+    }"
     class="space-y-5"
 >
 
@@ -20,65 +26,65 @@
 
                 <div class="p-3 space-y-1">
 
-                    <button @click="tab='identitas'"
-                        :class="tab==='identitas' ? 'bg-brand-500 text-white' : ''"
-                        class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-2">
+                    <button @click="setTab('identitas')"
+                        :class="tab==='identitas' ? 'bg-brand-500 text-white hover:text-white' : ''"
+                        class="w-full cursor-pointer hover:text-brand-600 text-left px-4 py-3 rounded-lg flex items-center gap-2">
                         <span class="material-icons-outlined">school</span>
                         Identitas PT
                     </button>
 
-                    <button @click="tab='akun'"
-                        :class="tab==='akun' ? 'bg-brand-500 text-white' : ''"
-                        class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-2">
+                    <button @click="setTab('akun')"
+                        :class="tab==='akun' ? 'bg-brand-500 text-white hover:text-white' : ''"
+                        class="w-full cursor-pointer hover:text-brand-600 text-left px-4 py-3 rounded-lg flex items-center gap-2">
                         <span class="material-icons-outlined">person</span>
                         Akun Pengguna
                     </button>
 
-                    <button @click="tab='password'"
-                        :class="tab==='password' ? 'bg-brand-500 text-white' : ''"
-                        class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-2">
+                    <button @click="setTab('password')"
+                        :class="tab==='password' ? 'bg-brand-500 text-white hover:text-white' : ''"
+                        class="w-full cursor-pointer hover:text-brand-600 text-left px-4 py-3 rounded-lg flex items-center gap-2">
                         <span class="material-icons-outlined">lock</span>
                         Password
                     </button>
 
-                    <button @click="tab='smtp'"
-                        :class="tab==='smtp' ? 'bg-brand-500 text-white' : ''"
-                        class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-2">
+                    <button @click="setTab('smtp')"
+                        :class="tab==='smtp' ? 'bg-brand-500 text-white hover:text-white' : ''"
+                        class="w-full cursor-pointer hover:text-brand-600 text-left px-4 py-3 rounded-lg flex items-center gap-2">
                         <span class="material-icons-outlined">mail</span>
                         SMTP Email
                     </button>
 
-                    <button @click="tab='branding'"
-                        :class="tab==='branding' ? 'bg-brand-500 text-white' : ''"
-                        class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-2">
+                    <button @click="setTab('branding')"
+                        :class="tab==='branding' ? 'bg-brand-500 text-white hover:text-white' : ''"
+                        class="w-full cursor-pointer hover:text-brand-600 text-left px-4 py-3 rounded-lg flex items-center gap-2">
                         <span class="material-icons-outlined">palette</span>
                         Logo & Branding
                     </button>
 
-                    <button @click="tab='feeder'"
-                        :class="tab==='feeder' ? 'bg-brand-500 text-white' : ''"
-                        class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-2">
+                    <button @click="setTab('feeder')"
+                        :class="tab==='feeder' ? 'bg-brand-500 text-white hover:text-white' : ''"
+                        class="w-full cursor-pointer hover:text-brand-600 text-left px-4 py-3 rounded-lg flex items-center gap-2">
                         <span class="material-icons-outlined">sync</span>
                         Neo Feeder
                     </button>
 
-                    <button @click="tab='wa'"
-                        :class="tab==='wa' ? 'bg-brand-500 text-white' : ''"
-                        class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-2">
+                    <button @click="setTab('wa')"
+                        :class="tab==='wa' ? 'bg-brand-500 text-white hover:text-white' : ''"
+                        class="w-full cursor-pointer hover:text-brand-600 text-left px-4 py-3 rounded-lg flex items-center gap-2">
                         <span class="material-icons-outlined">chat</span>
                         WhatsApp Gateway
                     </button>
 
-                    <button @click="tab='backup'"
-                        :class="tab==='backup' ? 'bg-brand-500 text-white' : ''"
-                        class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-2">
+                    <button @click="setTab('backup')"
+                        :class="tab==='backup' ? 'bg-brand-500 text-white hover:text-white' : ''"
+                        class="w-full cursor-pointer hover:text-brand-600 text-left px-4 py-3 rounded-lg flex items-center gap-2">
                         <span class="material-icons-outlined">backup</span>
                         Backup Database
                     </button>
 
-                    <button @click="tab='api'"
-                        :class="tab==='api' ? 'bg-brand-500 text-white' : ''"
-                        class="w-full text-left px-4 py-3 rounded-lg flex items-center gap-2">
+                    <button @click="setTab('api')"
+                        :class="tab==='api' ? 'bg-brand-500 text-white hover:text-white' : ''"
+                        class="w-full cursor-pointer hover:text-brand-600 text-left px-4 py-3 rounded-lg flex items-center gap-2">
                         <span class="material-icons-outlined">api</span>
                         API Settings
                     </button>
@@ -86,39 +92,25 @@
                 </div>
             </div>
 
-            {{-- CONTENT --}}
+            {{-- CONTENT ---}}
             <div class="flex-1 p-6">
 
                 {{-- IDENTITAS --}}
                 <div x-show="tab==='identitas'" x-cloak>
 
                     <div class="space-y-4">
-
-                        <x-input.input
-                            name="nama_pt"
-                            icon="school"
+                        <x-input.input name="nama_pt" icon="school"
                             label="Nama Perguruan Tinggi"
                             value="STIT Tunas Bangsa"
                         />
-
-                        <x-input.input
-                            name="npsn"
-                            label="NPSN"
-                            icon="badge"
-                        />
-
-                        <x-input.input
-                            name="email"
-                            label="Email"
-                            icon="email"
-                        />
-
-                        <x-input.textarea
-                            name="alamat"
-                            label="Alamat"
-                            icon="location_on"
-                        />
-
+                        <x-input.input name="npsn" icon="badge" label="NSPN" value="0210250" />
+                        <x-input.input name="akreditasi" icon="verified" label="Akreditasi" value="Unggul (SK BAN-PT No. 1234/SK/BAN-PT/Ak-PPJ/)" />
+                        <x-input.input name="alamat" icon="location_on" label="Alamat" value="Jl. Pendidikan No. 45, Jakarta Selatan" />
+                        <x-input.input name="kode_pos" icon="pin_drop" label="Kode Pos" value="12345" />
+                        <x-input.input name="telepon" icon="phone" label="Telepon" value="(021) 7890-1234" />
+                        <x-input.input name="fax" icon="print" label="Fax" value="(021) 7890-1235" />
+                        <x-input.input name="website" icon="language" label="Website" value="www.unima.ac.id" />
+                        <x-input.input name="email_pt" type="email" icon="email" label="Email" value="info@unima.ac.id" />
                     </div>
 
                     <div class="mt-5">
@@ -135,25 +127,12 @@
                 <div x-show="tab==='akun'" x-cloak>
 
                     <div class="space-y-4">
-
-                        <x-input.input
-                            name="username"
-                            label="Username"
-                            icon="person"
-                        />
-
-                        <x-input.input
-                            name="nama"
-                            label="Nama Lengkap"
-                            icon="badge"
-                        />
-
-                        <x-input.input
-                            type="email"
-                            name="email_user"
-                            label="Email"
-                            icon="alternate_email"
-                        />
+                        <div class="flex items-center gap-2.5 mb-3"><img src="https://picsum.photos/seed/neo-usr/80/80.jpg" class="w-12 h-12 rounded-xl object-cover"><div><div class="text-[12px] font-bold">Dr. Ahmad Fauzi, M.Kom.</div><div class="text-[10px]" style="color:var(--tx2)">Administrator</div></div></div>
+                        <x-input.input name="username" label="Username" icon="person" value="admin" />
+                        <x-input.input name="nama_lengkap" label="Nama Lengkap"  icon="badge" value="Dr. Ahmad Fauzi, M.Kom." />
+                        <x-input.input name="email_user" type="email" label="Email" icon="email" value="ahmad.fauzi@unima.ac.id" />
+                        <x-input.input name="role" label="Role" icon="verified" value="Administrator" readonly class="opacity-60 cursor-not-allowed" />
+                        <x-input.input name="last_login" label="Terakhir Login" icon="access_time" value="05 Mei 2026, 07:30 WIB" readonly class="opacity-60 cursor-not-allowed" />
 
                     </div>
                     <div class="mt-5">

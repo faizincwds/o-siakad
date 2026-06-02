@@ -1,11 +1,7 @@
 <aside
     x-cloak
-    class="fixed inset-y-0 left-0 z-50 font-semibold flex w-64 flex-col overflow-hidden border-r border-sidebar-border bg-sidebar transition-all duration-300 ease-in-out max-lg:-translate-x-full"
-    :class="{
-        'lg:w-20': collapsed,
-        'lg:w-64': !collapsed,
-        'max-lg:translate-x-0': mobileSidebar
-    }"
+    class="fixed inset-y-0 left-0 z-50 font-semibold flex w-65 flex-col overflow-hidden border-r border-sidebar-border bg-sidebar transition-all duration-300 ease-in-out max-lg:-translate-x-full"
+    :class="{ 'lg:-translate-x-full': collapsed, 'max-lg:translate-x-0': mobileSidebar }"
 >
 
     {{-- ========================================= --}}
@@ -62,7 +58,7 @@
 
                         <button
                             @click="navigate(item.route)"
-                            class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-200"
+                            class="group flex w-full items-center gap-3 cursor-pointer rounded-lg px-3 py-2 text-sm transition-all duration-200"
 
                             :class="
                                 activePage === item.route
@@ -94,7 +90,7 @@
 
                             <button
                                 @click="toggleSubmenu(index)"
-                                class="group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-200"
+                                class="group flex w-full items-center cursor-pointer gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-200"
 
                                 :class="
                                     isParentActive(item)
@@ -145,7 +141,7 @@
 
                                         <button
                                             @click="navigate(child.route)"
-                                            class="flex w-full font-semibold items-center gap-2 pl-5 pr-3 py-2 text-sm transition-all duration-150"
+                                            class="flex w-full font-semibold cursor-pointer items-center gap-2 pl-5 pr-3 py-2 text-sm transition-all duration-150"
 
                                             :class="
                                                 activePage === child.route
