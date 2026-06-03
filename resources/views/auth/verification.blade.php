@@ -35,10 +35,9 @@
 
                     <!-- Go to Login Button -->
                     <a href="{{ Route::has('login') ? route('login') : '#' }}">
-                    <x-button type="button" variant="primary" size="sm" class="w-full">
-                        <span class="material-icons-outlined text-[20px]">login</span>
-                        <span>Go to Login</span>
-                    </x-button>
+                        <x-button.button type="button" variant="primary" size="sm" icon="login" class="w-full">
+                            Go to Login
+                        </x-button.button>
                     </a>
 
                     <!-- Optional: Go to Home -->

@@ -20,8 +20,8 @@
             <form method="POST" action="{{ Route::has('login') ? route('login') : '#' }}" class="space-y-5">
                 @csrf
 
-                <!-- Menggunakan x-input component -->
-                <x-input
+                <!-- Menggunakan x-input.input component -->
+                <x-input.input
                     name="email"
                     type="email"
                     label="Email"
@@ -31,17 +31,36 @@
                     value="{{ old('email') }}"
                     required="true" />
 
-                <!-- Menggunakan x-input component -->
-                <x-input name="password" type="password" label="Password" placeholder="Enter your password" size="md" icon="lock" required="true" />
+                <!-- Menggunakan x-input.input component -->
+                <x-input.input name="password" type="password" label="Password" placeholder="Enter your password" size="md" icon="lock" required="true" />
 
                 <!-- Remember & Forgot -->
                 <x-forms.remember-me />
 
-                <!-- Menggunakan x-button component -->
-                <x-button type="submit" variant="primary" size="sm" class="w-full" icon="login">
+                <!-- Menggunakan x-button.button component -->
+                <x-button.button type="submit" variant="primary" size="sm" class="w-full" icon="login">
                     Sign In
-                </x-button>
+                </x-button.button>
             </form>
+
+            <p class="my-6 text-center text-sm text-muted">Or sign in with</p>
+
+
+            <div class="grid gap-3 mt-4">
+                <x-button.social-login
+                    provider="google"
+                    size="sm"
+                />
+                <x-button.social-login
+                    provider="facebook"
+                    size="sm"
+                />
+                <x-button.social-login
+                    provider="github"
+                    size="sm"
+                    class="dark:bg-slate-700 dark:hover:bg-slate-600"
+                />
+            </div>
 
             <!-- Register Link -->
             <div class="mt-8 text-center">

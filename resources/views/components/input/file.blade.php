@@ -1,9 +1,16 @@
 @props([
-    'name'
+    'name',
+    'label' => null,
 ])
 
-<input
-    type="file"
+    @if($label)
+        <label for="{{ $name }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            {{ $label }}
+        </label>
+    @endif
+
+    <input
+        type="file"
     name="{{ $name }}"
     {{
         $attributes->merge([

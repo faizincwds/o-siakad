@@ -20,11 +20,11 @@
             <form method="POST" action="{{ Route::has('register') ? route('register') : '#' }}" class="space-y-5">
                 @csrf
 
-                <!-- Menggunakan x-input component -->
-                <x-input name="name" type="text" label="Full Name" placeholder="Enter your full name" size="md" icon="user" value="{{ old('name') }}" required />
+                <!-- Menggunakan x-input.input component -->
+                <x-input.input name="name" type="text" label="Full Name" placeholder="Enter your full name" size="md" icon="user" value="{{ old('name') }}" required />
 
-                <!-- Menggunakan x-input component -->
-                <x-input name="email" type="email" label="Email" placeholder="Enter your email" size="md" icon="email" value="{{ old('email') }}" required />
+                <!-- Menggunakan x-input.input component -->
+                <x-input.input name="email" type="email" label="Email" placeholder="Enter your email" size="md" icon="email" value="{{ old('email') }}" required />
 
                 <x-forms.password-field />
 
@@ -34,10 +34,10 @@
                     :privacy-url="Route::has('privacy') ? route('privacy') : '#'"
                 />
 
-                <!-- Menggunakan x-button component -->
-                <x-button type="submit" variant="primary" size="sm" class="w-full" icon="person_add">
+                <!-- Menggunakan x-button.button component -->
+                <x-button.button type="submit" variant="primary" size="sm" class="w-full" icon="person_add">
                     Create Account
-                </x-button>
+                </x-button.button>
             </form>
 
             <!-- Login Link -->

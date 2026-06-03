@@ -39,7 +39,7 @@
                     <!-- Email -->
                     <div>
                         <div class="relative">
-                            <x-input
+                            <x-input.input
                                 name="email"
                                 type="email"
                                 label="Email"
@@ -72,10 +72,9 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <x-button type="submit" variant="primary" size="sm" class="w-full">
-                        <span class="material-icons-outlined text-[20px]">lock_reset</span>
-                        <span>Reset Password</span>
-                    </x-button>
+                    <x-button.button type="submit" variant="primary" size="sm" icon="lock_reset" class="w-full">
+                        Reset Password
+                    </x-button.button>
                 </form>
 
                 <!-- Back to Login Link -->

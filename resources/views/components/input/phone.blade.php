@@ -7,6 +7,7 @@
     'helper' => null,
 ])
 
+<div class="space-y-1.5">
     @if($label)
         <label
             for="{{ $name }}"
@@ -19,8 +20,8 @@
             @endif
         </label>
     @endif
-   
-  <div class="relative"> 
+
+  <div class="relative">
         @if($icon)
             <span
                 class="material-icons-outlined icon-md absolute left-3 top-1/2 -translate-y-1/2 text-muted"
@@ -47,9 +48,17 @@
         }}
     >
   </div>
-  
+
     @if($helper)
         <p class="text-xs text-muted">
             {{ $helper }}
         </p>
     @endif
+
+    @error($name)
+        <p class="text-xs text-red-500">
+            {{ $message }}
+        </p>
+    @enderror
+
+</div>

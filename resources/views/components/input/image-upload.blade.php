@@ -1,14 +1,29 @@
 @props([
     'name',
-    'label' => 'Upload Gambar'
+    'label' => 'Upload Gambar',
+    'accept' => 'image/*',
+    'required' => false,
 ])
+
+    @if($label)
+        <label
+            for="{{ $name }}"
+            class="block text-sm font-medium text-foreground"
+        >
+            {{ $label }}
+
+            @if($required)
+                <span class="text-red-500">*</span>
+            @endif
+        </label>
+    @endif
 
 <div x-data="{ preview: null }">
 
     <input
         type="file"
         name="{{ $name }}"
-        accept="image/*"
+        accept="{{ $accept }}"
         class="hidden"
         x-ref="file"
         @change="
