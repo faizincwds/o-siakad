@@ -135,9 +135,9 @@
                     <div class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></div>
                     <h3 class="font-display font-bold text-[13px] text-foreground">Log Sinkronisasi</h3>
                 </div>
-                <x-button variant="primary" size="sm" icon="sync" class="!px-3 !py-1.5 !text-[11px]">
+                <x-button.button variant="primary" size="sm" icon="sync" class="!px-3 !py-1.5 !text-[11px]">
                     Sync
-                </x-button>
+                </x-button.button>
             </div>
 
             <div class="space-y-1 max-h-[240px] overflow-y-auto pr-1">

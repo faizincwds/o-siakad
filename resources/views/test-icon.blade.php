@@ -631,27 +631,27 @@
         <div class="flex items-center gap-8">
 
             <div class="text-center">
-                <x-icon name="dashboard" size="xs"/>
+                <x-ui.icon name="dashboard" size="xs"/>
                 <p class="mt-2 text-xs">xs</p>
             </div>
 
             <div class="text-center">
-                <x-icon name="dashboard" size="sm"/>
+                <x-ui.icon name="dashboard" size="sm"/>
                 <p class="mt-2 text-xs">sm</p>
             </div>
 
             <div class="text-center">
-                <x-icon name="dashboard" size="md"/>
+                <x-ui.icon name="dashboard" size="md"/>
                 <p class="mt-2 text-xs">md</p>
             </div>
 
             <div class="text-center">
-                <x-icon name="dashboard" size="lg"/>
+                <x-ui.icon name="dashboard" size="lg"/>
                 <p class="mt-2 text-xs">lg</p>
             </div>
 
             <div class="text-center">
-                <x-icon name="dashboard" size="xl"/>
+                <x-ui.icon name="dashboard" size="xl"/>
                 <p class="mt-2 text-xs">xl</p>
             </div>
 
@@ -668,62 +668,62 @@
         <div class="grid md:grid-cols-3 gap-3">
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="dashboard"/>
+                <x-ui.icon name="dashboard"/>
                 Dashboard
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="student"/>
+                <x-ui.icon name="student"/>
                 Mahasiswa
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="lecturer"/>
+                <x-ui.icon name="lecturer"/>
                 Dosen
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="faculty"/>
+                <x-ui.icon name="faculty"/>
                 Fakultas
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="program-study"/>
+                <x-ui.icon name="program-study"/>
                 Program Studi
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="course"/>
+                <x-ui.icon name="course"/>
                 Mata Kuliah
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="schedule"/>
+                <x-ui.icon name="schedule"/>
                 Jadwal Kuliah
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="attendance"/>
+                <x-ui.icon name="attendance"/>
                 Presensi
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="grade"/>
+                <x-ui.icon name="grade"/>
                 Nilai
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="finance"/>
+                <x-ui.icon name="finance"/>
                 Keuangan
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="report"/>
+                <x-ui.icon name="report"/>
                 Laporan
             </a>
 
             <a href="#" class="flex items-center gap-3">
-                <x-icon name="settings"/>
+                <x-ui.icon name="settings"/>
                 Pengaturan
             </a>
 
@@ -963,7 +963,7 @@
 
         <div class="relative max-w-md">
 
-            <x-icon
+            <x-ui.icon
                 name="search"
                 class="absolute left-3 top-3 text-muted"
             />
@@ -990,7 +990,7 @@
             <div class="rounded-xl border border-card-border p-5">
                 <div class="flex items-center gap-3">
 
-                    <x-icon
+                    <x-ui.icon
                         name="student"
                         size="xl"
                         class="text-brand-600"
@@ -1012,7 +1012,7 @@
             <div class="rounded-xl border border-card-border p-5">
                 <div class="flex items-center gap-3">
 
-                    <x-icon
+                    <x-ui.icon
                         name="lecturer"
                         size="xl"
                         class="text-green-600"
@@ -1034,7 +1034,7 @@
             <div class="rounded-xl border border-card-border p-5">
                 <div class="flex items-center gap-3">
 
-                    <x-icon
+                    <x-ui.icon
                         name="course"
                         size="xl"
                         class="text-blue-600"
@@ -1056,7 +1056,7 @@
             <div class="rounded-xl border border-card-border p-5">
                 <div class="flex items-center gap-3">
 
-                    <x-icon
+                    <x-ui.icon
                         name="finance"
                         size="xl"
                         class="text-orange-600"
@@ -1089,17 +1089,17 @@
         <div class="flex flex-wrap gap-6">
 
             <div class="flex items-center gap-2 text-green-600">
-                <x-icon name="security"/>
+                <x-ui.icon name="security"/>
                 Aktif
             </div>
 
             <div class="flex items-center gap-2 text-yellow-600">
-                <x-icon name="notification"/>
+                <x-ui.icon name="notification"/>
                 Menunggu
             </div>
 
             <div class="flex items-center gap-2 text-red-600">
-                <x-icon name="delete"/>
+                <x-ui.icon name="delete"/>
                 Nonaktif
             </div>
 
@@ -1148,7 +1148,7 @@
             ] as $icon)
 
                 <div class="flex items-center gap-2">
-                    <x-icon name="{{ $icon }}" />
+                    <x-ui.icon name="{{ $icon }}" />
                     <span>{{ $icon }}</span>
                 </div>
 

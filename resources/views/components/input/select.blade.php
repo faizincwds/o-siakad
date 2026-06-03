@@ -24,7 +24,7 @@
         {{
             $attributes->merge([
                 'class' =>
-                'w-full rounded-lg border border-card-border bg-surface
+                'w-full rounded-lg border border-card-border
                 px-4 py-2.5 text-sm text-foreground
                 outline-none transition-all
                 focus:border-brand-300 focus:ring-1 focus:ring-brand-100'

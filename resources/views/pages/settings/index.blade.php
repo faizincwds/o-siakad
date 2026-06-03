@@ -160,7 +160,7 @@
                         </div>
 
                         <div class="grid md:grid-cols-2 gap-5">
-                            <x-input.input name="username" label="Username" icon="person" value="admin" readonly class="bg-gray-300 dark:bg-white/5" />
+                            <x-input.input name="username" label="Username" icon="person" value="admin" readonly/>
                             <x-input.input name="email_user" type="email" label="Email Administrator" icon="email" value="ahmad.fauzi@unima.ac.id" />
                         </div>
 
@@ -221,11 +221,11 @@
                             <x-input.input name="smtp_password" type="password" label="Password SMTP" icon="lock" />
                         </div>
 
-                        <div class="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-brand-800 rounded-lg mb-4">
+                        <div class="p-4 bg-blue-50 dark:bg-brand-900/20 rounded-lg mb-4">
                             <h4 class="text-xs font-bold text-brand-700 dark:text-brand-300 uppercase mb-3">Header Email (From)</h4>
                             <div class="grid md:grid-cols-2 gap-5">
-                                <x-input.input name="mail_from_address" label="From Address" icon="mail" placeholder="no-reply@kampus.ac.id" />
-                                <x-input.input name="mail_from_name" label="From Name" icon="label" placeholder="Sistem Akademik" />
+                                <x-input.input name="mail_from_address" label="From Address" icon="mail" placeholder="no-reply@kampus.ac.id" class="bg-white dark:bg-gray-900/50" />
+                                <x-input.input name="mail_from_name" label="From Name" icon="label" placeholder="Sistem Akademik" class="bg-white dark:bg-gray-900/50" />
                             </div>
                         </div>
 

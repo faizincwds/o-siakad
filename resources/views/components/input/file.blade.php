@@ -17,7 +17,7 @@
             'class' => '
                 block w-full text-sm
                 file:mr-4
-                file:rounded-lg
+                file:rounded-md
                 file:border-0
                 file:bg-brand-600
                 file:px-4

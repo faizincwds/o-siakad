@@ -39,7 +39,7 @@
         {{
             $attributes->merge([
                     'class' =>
-                    'w-full rounded-lg border border-card-border bg-surface text-foreground
+                    'w-full rounded-lg border border-card-border text-foreground
                     focus:border-brand-300 focus:ring-1 focus:ring-brand-100
                     outline-none transition-all
                     py-2.5 text-sm ' .
