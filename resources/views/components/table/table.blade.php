@@ -1,7 +1,6 @@
 <div class="
     bg-card
-    border border-card-border
-    rounded-xl
+    border-card-border
     overflow-hidden
 ">
     <div class="overflow-x-auto">

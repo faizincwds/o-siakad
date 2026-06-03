@@ -35,7 +35,7 @@ $variants = [
     'danger' => 'bg-red-600 text-white hover:bg-red-700',
     'info' => 'bg-sky-600 text-white hover:bg-sky-700',
     'outline' => 'border border-card-border bg-transparent text-foreground hover:bg-surface',
-    'ghost' => 'bg-transparent text-foreground hover:bg-surface',
+    'ghost' => 'text-foreground hover:bg-surface',
 ];
 
 @endphp
