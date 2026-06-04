@@ -1,100 +1,95 @@
 @props([
     'name' => 'password',
     'label' => 'Password',
+    'icon' => 'lock',
     'required' => true,
-    'showGenerator' => true,
+    'showGenerator' => false,
+    'showCopy' => false,
 ])
 
-<div>
-    <div class="mb-2.5 flex items-center justify-between">
+<div class="space-y-1.5">
 
-        <label for="{{ $name }}" class="text-[11px] font-semibold text-muted block mb-1">
+    <div class="flex items-center justify-between">
+
+        <label class="text-sm font-medium text-foreground">
+
             {{ $label }}
 
             @if($required)
                 <span class="text-red-500">*</span>
             @endif
+
         </label>
 
         @if($showGenerator)
+
             <button
                 type="button"
                 @click="generatePassword()"
-                class="text-xs font-medium text-brand-600 hover:underline"
+                class="text-xs text-brand-600"
             >
-                Generate Password
+                Generate
             </button>
+
         @endif
 
     </div>
 
     <div class="relative">
 
+        <span
+            class="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted"
+        >
+            {{ $icon }}
+        </span>
+
         <input
-            :type="showPassword ? 'text' : 'password'"
+            :type="visible ? 'text':'password'"
             name="{{ $name }}"
             x-model="password"
-            @keydown.window="capslock = $event.getModifierState('CapsLock')"
-            placeholder="Enter your password"
-            {{ $required ? 'required' : '' }}
-            class="w-full px-3 py-2 text-[12.5px] text-muted border border-card-border rounded-lg bg-surface focus:border-brand-300 focus:ring-1 focus:ring-brand-100 outline-none transition-all"
+            class="w-full pl-10 pr-24 py-2.5 rounded-lg border border-card-border bg-surface text-sm"
         >
 
-        <div class="absolute right-3 top-2.5 flex items-center gap-2">
+        <div
+            class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2"
+        >
+
+            @if($showCopy)
+
+                <button
+                    type="button"
+                    @click="copyPassword()"
+                >
+                    <span class="material-icons-outlined">
+                        content_copy
+                    </span>
+                </button>
+
+            @endif
 
             <button
                 type="button"
-                @click="copyPassword()"
-                class="text-muted hover:text-brand-600"
-                title="Copy Password"
+                @click="visible=!visible"
             >
-                <span class="material-icons-outlined text-md">
-                    content_copy
-                </span>
-            </button>
 
-            <button
-                type="button"
-                @click="showPassword = !showPassword"
-                class="text-muted hover:text-brand-600"
-            >
                 <span
-                    x-show="!showPassword"
-                    x-cloak
-                    class="material-icons-outlined text-md"
+                    x-show="!visible"
+                    class="material-icons-outlined"
                 >
                     visibility
                 </span>
 
                 <span
-                    x-show="showPassword"
-                    x-cloak
-                    class="material-icons-outlined text-md"
+                    x-show="visible"
+                    class="material-icons-outlined"
                 >
                     visibility_off
                 </span>
+
             </button>
 
         </div>
 
     </div>
-
-    <div
-        x-show="capslock"
-        x-transition
-        class="mt-2 flex items-center gap-2 rounded-lg border border-yellow-200 bg-yellow-50 px-3 py-2 text-sm text-yellow-700"
-    >
-        <span class="material-icons-outlined text-sm">
-            warning
-        </span>
-
-        <span>Caps Lock is on</span>
-    </div>
-
-    @error($name)
-        <p class="mt-1.5 text-xs text-red-500">
-            {{ $message }}
-        </p>
-    @enderror
 
 </div>

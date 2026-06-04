@@ -29,8 +29,8 @@ class ThemeUI
                             'label' => 'Hak Akses'
                         ],
                         [
-                            'route' => 'settings.profile',
-                            'label' => 'Profil'
+                            'route' => 'settings.icons',
+                            'label' => 'Ikonic'
                         ],
                     ]
                 ],
@@ -56,12 +56,12 @@ class ThemeUI
                     'desc'   => 'Manajemen hak akses pengguna sistem. ',
                     'crumbs' => ['Settings', 'Roles']
                 ],
-                'settings.profile' => [
+                'settings.icons' => [
                     'icon'   => 'person',
-                    'title'  => 'Profil Perguruan Tinggi',
-                    'desc'   => 'Kelola informasi profil Anda',
-                    'crumbs' => ['Settings', 'Profil']
-                ],
+                    'title'  => 'Ikonic',
+                    'desc'   => 'Kelola informasi ikonic Anda',
+                    'crumbs' => ['Settings', 'Ikonic']
+                ]
             ],
 
             /* ─── Theme Options ─── */

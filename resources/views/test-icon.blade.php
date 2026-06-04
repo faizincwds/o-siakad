@@ -11,6 +11,62 @@
         <p class="text-muted mt-2">Referensi penggunaan seluruh komponen dan ikon yang tersedia.</p>
     </div>
 
+    <div class="bg-card border border-card-border rounded-xl p-5">
+
+            <h3 class="font-semibold mb-2">
+                Lokasi Kampus
+            </h3>
+
+            <p class="text-muted text-sm mb-4">
+                Jl. Raya Banjarnegara No.10, Banjarnegara
+            </p>
+
+            <x-button.google-maps-link
+                query="STIT Tunas Bangsa Banjarnegara"
+                variant="success"
+                icon="map"
+            >
+                Navigasi ke Kampus
+            </x-button.google-maps-link>
+
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-5">
+
+    <div class="bg-card border border-card-border rounded-xl p-5">
+
+        <h3 class="font-semibold mb-4">
+            Informasi Kampus
+        </h3>
+
+        <div class="space-y-3 text-sm">
+
+            <div>
+                <strong>Nama:</strong>
+                STIT Tunas Bangsa Banjarnegara
+            </div>
+
+            <div>
+                <strong>Alamat:</strong>
+                Banjarnegara, Jawa Tengah
+            </div>
+
+            <div>
+                <strong>Telepon:</strong>
+                0286-xxxxxx
+            </div>
+
+        </div>
+
+    </div>
+
+    <x-widget.google-maps
+        title="Lokasi Kampus"
+        query="STIT Tunas Bangsa Banjarnegara"
+    />
+
+</div>
+
     {{-- GRAFIK / CHART --}}
     <div class="rounded-xl border border-card-border bg-card p-5">
         <h2 class="mb-4 font-semibold">Grafik & Statistik</h2>

@@ -8,6 +8,7 @@ Route::controller(SettingController::class)->group(function () {
     Route::get('/settings', 'index')->name('settings.index');
     Route::get('/settings/roles', 'roles')->name('settings.roles');
     Route::get('/settings/profile', 'profile')->name('settings.profile');
+    Route::get('/settings/icons', 'icons')->name('settings.icons');
     Route::post('/settings', 'update')->name('settings.update');
     Route::get('/settings/mail', 'mail')->name('settings.mail');
     Route::post('/settings/mail', 'updateMail')->name('settings.updateMail');

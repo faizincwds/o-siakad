@@ -20,7 +20,6 @@
             <form method="POST" action="{{ Route::has('login') ? route('login') : '#' }}" class="space-y-5">
                 @csrf
 
-                <!-- Menggunakan x-input.input component -->
                 <x-input.input
                     name="email"
                     type="email"
@@ -30,14 +29,10 @@
                     icon="email"
                     value="{{ old('email') }}"
                     required="true" />
-
-                <!-- Menggunakan x-input.input component -->
                 <x-input.input name="password" type="password" label="Password" placeholder="Enter your password" size="md" icon="lock" required="true" />
 
-                <!-- Remember & Forgot -->
                 <x-forms.remember-me />
 
-                <!-- Menggunakan x-button.button component -->
                 <x-button.button type="submit" variant="primary" size="sm" class="w-full" icon="login">
                     Sign In
                 </x-button.button>
@@ -52,13 +47,9 @@
                     size="sm"
                 />
                 <x-button.social-login
-                    provider="facebook"
-                    size="sm"
-                />
-                <x-button.social-login
                     provider="github"
                     size="sm"
-                    class="dark:bg-slate-700 dark:hover:bg-slate-600"
+                    class="dark:bg-slate-800 dark:hover:bg-slate-600"
                 />
             </div>
 

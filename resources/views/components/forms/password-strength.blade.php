@@ -1,60 +1,49 @@
-<div x-show="password.length > 0" class="mt-4">
+<div
+    x-show="password.length > 0"
+    x-cloak
+>
 
-    <div class="mb-1 flex items-center justify-between text-[11px]">
-        <span class="text-muted">
-            Password Strength
-        </span>
+    <div
+        class="flex items-center justify-between text-xs mb-2"
+    >
+        <span>Password Strength</span>
 
-        <span
-            x-text="strengthLabel"
-            :class="strengthTextColor"
-        ></span>
+        <span x-text="strengthLabel"></span>
     </div>
 
-    <div class="h-2 overflow-hidden rounded-full bg-surface">
+    <div
+        class="h-2 rounded-full bg-surface overflow-hidden"
+    >
         <div
-            class="h-full rounded-full transition-all duration-500"
-            :style="`width:${strengthWidth}%; background-color:${strengthColor}`"
+            class="h-full transition-all duration-500"
+            :style="`
+                width:${strengthWidth}%;
+                background:${strengthColor}
+            `"
         ></div>
     </div>
 
-    <div class="mt-1 grid gap-1 text-[11px]">
+    <div class="mt-3 space-y-1 text-xs">
 
-        <template
-            x-for="item in [
-                { check: hasMinLength, label: 'At least 8 characters' },
-                { check: hasUppercase, label: 'Contains uppercase letter' },
-                { check: hasLowercase, label: 'Contains lowercase letter' },
-                { check: hasNumber, label: 'Contains a number' },
-                { check: hasSymbol, label: 'Contains a symbol' }
-            ]"
-            :key="item.label"
-        >
+        <div :class="hasMinLength ? 'text-green-500':'text-muted'">
+            ✓ Minimal 8 karakter
+        </div>
 
-            <div
-                class="flex items-center gap-2"
-                :class="item.check ? 'text-green-500' : 'text-muted'"
-            >
+        <div :class="hasUppercase ? 'text-green-500':'text-muted'">
+            ✓ Huruf besar
+        </div>
 
-                <span
-                    x-show="item.check"
-                    class="material-icons-outlined text-sm"
-                >
-                    check_circle
-                </span>
+        <div :class="hasLowercase ? 'text-green-500':'text-muted'">
+            ✓ Huruf kecil
+        </div>
 
-                <span
-                    x-show="!item.check"
-                    class="material-icons-outlined text-sm"
-                >
-                    radio_button_unchecked
-                </span>
+        <div :class="hasNumber ? 'text-green-500':'text-muted'">
+            ✓ Angka
+        </div>
 
-                <span x-text="item.label"></span>
-
-            </div>
-
-        </template>
+        <div :class="hasSymbol ? 'text-green-500':'text-muted'">
+            ✓ Simbol
+        </div>
 
     </div>
 

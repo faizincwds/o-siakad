@@ -7,6 +7,8 @@
     'helper' => null,
 ])
 
+<div class="space-y-1.5">
+
     @if($label)
         <label
             for="{{ $name }}"
@@ -19,8 +21,8 @@
             @endif
         </label>
     @endif
-   
-  <div class="relative"> 
+
+  <div class="relative">
         @if($icon)
             <span
                 class="material-icons-outlined icon-md absolute left-3 top-1/2 -translate-y-1/2 text-muted"
@@ -28,7 +30,7 @@
                 {{ $icon }}
             </span>
         @endif
-  
+
       <input
           type="datetime-local"
           name="{{ $name }}"
@@ -51,3 +53,4 @@
             {{ $helper }}
         </p>
     @endif
+</div>

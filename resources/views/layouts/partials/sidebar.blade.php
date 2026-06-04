@@ -4,35 +4,39 @@
     :class="{ 'lg:-translate-x-full': collapsed, 'max-lg:translate-x-0': mobileSidebar }"
 >
 
-    {{-- ========================================= --}}
-    {{-- LOGO --}}
-    {{-- ========================================= --}}
     <div class="flex h-17 items-center gap-3 border-b border-sidebar-border px-4 shrink-0">
 
-        <div
-            class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/10 shrink-0"
-        >
-            <span class="material-icons-outlined icon-lg text-brand-600">
-                school
-            </span>
-        </div>
+
 
         <div
             x-show="!collapsed"
             x-transition.opacity
             class="min-w-0"
         >
-            <h1
-                class="truncate font-display text-sm font-bold text-brand-700 dark:text-brand-100"
-            >
-                e-SIAKAD
-            </h1>
+            @if (is_null(config('app.name')) || config('app.name') === 'Laravel')
 
-            <p
-                class="truncate text-[10px] uppercase tracking-widest text-brand-500/60"
-            >
-                STITUSA • v0.1.3
-            </p>
+                <img src="{{ asset('logo-siakad.svg') }}" class="w-48" alt="e-SIAKAD">
+            @else
+            <div class="flex items-center gap-2">
+                <div
+                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/10 shrink-0"
+                >
+                    <span class="material-icons-outlined icon-lg text-brand-600">
+                        school
+                    </span>
+
+                </div>
+                <h1 class="truncate font-display font-bold text-brand-700 dark:text-brand-100"
+                >
+                    o-SIAKAD
+                </h1>
+            </div>
+
+            @endif
+
+
+
+
         </div>
 
     </div>
@@ -206,16 +210,11 @@
 
                 <div>
                     <div
-                        class="text-xs font-semibold text-sidebar-text"
+                        class="text-xs text-muted font-semibold"
                     >
-                        Sistem Aktif
+                        Version: 0.1.3
                     </div>
 
-                    <div
-                        class="text-[10px] text-sidebar-muted"
-                    >
-                        e-SIAKAD v0.1.3
-                    </div>
                 </div>
 
             </div>
