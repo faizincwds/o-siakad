@@ -6,7 +6,7 @@
             value="1"
             {{ old($name) ? 'checked' : '' }}
             class="h-4 w-4 rounded border-card-border dark:text-brand-600 focus:ring-brand-500"
-            required=""
+
         >
 
         <span for="{{ $name }}" class="ml-2 text-sm text-muted block">
@@ -14,12 +14,10 @@
         </span>
     </label>
 
-    @if(Route::has('password.request'))
         <a
-            href="{{ Route::has('password.request') ? route('password.request') : '#' }}"
+            href="{{ Route::has('forgot') ? route('forgot') : '#' }}"
             class="text-sm text-brand-600 hover:underline dark:text-brand-400"
         >
             Forgot password?
         </a>
-    @endif
 </div>

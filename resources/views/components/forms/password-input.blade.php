@@ -45,6 +45,7 @@
 
         <input
             :type="visible ? 'text':'password'"
+            id="{{ $name }}"
             name="{{ $name }}"
             x-model="password"
             class="w-full pl-10 pr-24 py-2.5 rounded-lg border border-card-border bg-surface text-sm"
@@ -91,5 +92,11 @@
         </div>
 
     </div>
+
+    @error($name)
+        <p class="text-xs text-red-500">
+            {{ $message }}
+        </p>
+    @enderror
 
 </div>

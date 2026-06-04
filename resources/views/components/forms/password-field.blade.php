@@ -86,7 +86,7 @@
     },
 
     get hasMinLength() {
-        return this.password.length >= 8;
+        return this.password.length >= 6;
     },
 
     get hasUppercase() {

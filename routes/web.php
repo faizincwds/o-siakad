@@ -21,10 +21,5 @@ Route::controller(SettingController::class)->group(function () {
     Route::post('/settings/reset', 'reset')->name('settings.reset');
 });
 
-// Dashboard & Profil
-Route::get('/', function(){
-    return view('pages.dashboard.index');
-})->name('dashboard');
-
 Route::post('/import', [MahasiswaController::class, 'import'])
     ->name('import');

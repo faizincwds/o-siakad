@@ -51,7 +51,7 @@
 
         <main class="flex-1 p-4 md:p-5">
         <!-- Breadcrumb -->
-        <nav class="flex items-center gap-1 text-[11px] text-muted mb-4 flex-wrap" aria-label="Breadcrumb">
+        <nav class="flex items-center gap-1 text-sm text-muted mb-4 flex-wrap" aria-label="Breadcrumb">
             <template x-for="(crumb, i) in breadcrumbs" :key="i">
                 <span class="contents">
                     <span
@@ -60,7 +60,7 @@
                     </span>
                     <span
                         x-show="i < breadcrumbs.length - 1"
-                        class="material-icons-outlined text-[11px]">chevron_right
+                        class="material-icons-outlined text-sm">chevron_right
                     </span>
                 </span>
             </template>
@@ -73,7 +73,7 @@
             </div>
             <div>
             <h1 class="font-display font-bold text-[17px] leading-tight text-foreground" x-text="pageTitle"></h1>
-            <p class="text-[11px] text-muted mt-0.5" x-text="pageDesc"></p>
+            <p class="text-sm text-muted mt-0.5" x-text="pageDesc"></p>
             </div>
         </div>
 

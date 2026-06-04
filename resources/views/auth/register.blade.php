@@ -16,19 +16,17 @@
         <div class="mx-auto flex w-full max-w-md flex-1 flex-col justify-center">
             <h2 class="mb-2 text-2xl font-bold text-foreground">@yield('title')</h2>
             <p class="mb-8 text-md text-muted">Enter your details below to create your account!</p>
-
-            <form method="POST" action="{{ Route::has('register') ? route('register') : '#' }}" class="space-y-5">
+            <form method="POST" action="{{ Route::has('register.store') ? route('register.store') : '#' }}" class="space-y-5">
                 @csrf
-                <x-input.input name="name" type="text" label="Full Name" placeholder="Enter your full name" size="md" icon="user" value="{{ old('name') }}" required />
-                <x-input.input name="email" type="email" label="Email" placeholder="Enter your email" size="md" icon="email" value="{{ old('email') }}" required />
+                <x-input.input name="name" type="text" label="Full Name" placeholder="Enter your full name"
+                    size="md" icon="person" value="{{ old('name') }}" autofocus required />
+                <x-input.input name="email" type="email" label="Email" placeholder="Enter your email" size="md"
+                    icon="email" value="{{ old('email') }}" required />
 
                 <x-forms.password-field />
 
                 <!-- Terms -->
-                <x-forms.terms-agreement
-                    :terms-url="Route::has('terms') ? route('terms') : '#'"
-                    :privacy-url="Route::has('privacy') ? route('privacy') : '#'"
-                />
+                <x-forms.terms-agreement :terms-url="Route::has('terms') ? route('terms') : '#'" :privacy-url="Route::has('privacy') ? route('privacy') : '#'" />
                 <x-button.button type="submit" variant="primary" size="sm" class="w-full" icon="person_add">
                     Create Account
                 </x-button.button>
@@ -38,11 +36,15 @@
             <div class="mt-8 text-center">
                 <p class="text-sm font-medium text-foreground">
                     Already have an account?
-                    <a href="{{ Route::has('login') ? route('login') : '#' }}" class="text-brand-600 hover:underline dark:text-brand-400">Sign In</a>
+                    <a href="{{ Route::has('login') ? route('login') : '#' }}"
+                        class="text-brand-600 hover:underline dark:text-brand-400">Sign In</a>
                 </p>
             </div>
         </div>
+
     </section>
+
+
 
     <!-- RIGHT -->
     <section class="relative hidden overflow-hidden lg:flex lg:w-1/2 items-center justify-center bg-brand-900">
@@ -55,7 +57,8 @@
                 <span class="material-icons-outlined text-5xl text-white">school</span>
             </div>
             <h1 class="mb-4 text-4xl font-bold text-white">e-SIAKAD</h1>
-            <p class="text-lg leading-relaxed text-brand-100/80">Sistem Informasi Akademik modern untuk kampus Islam berbasis Laravel dan TailwindCSS.</p>
+            <p class="text-lg leading-relaxed text-brand-100/80">Sistem Informasi Akademik modern untuk kampus Islam
+                berbasis Laravel dan TailwindCSS.</p>
         </div>
     </section>
 @endsection

@@ -14,8 +14,8 @@
         <div class="relative bg-card border border-card-border rounded-2xl overflow-hidden">
             <div class="flex flex-col lg:flex-row">
                 <!-- Ilustrasi Kiri -->
-                <div class="lg:w-5/12 min-h-[190px] flex items-center justify-center p-6 bg-brand-500/5">
-                    <svg viewBox="0 0 300 200" class="w-full max-w-[260px]" fill="none">
+                <div class="lg:w-5/12 min-h-47.5 flex items-center justify-center p-6 bg-brand-500/5">
+                    <svg viewBox="0 0 300 200" class="w-full max-w-65" fill="none">
                         <rect x="30" y="15" width="190" height="120" rx="7" fill="#047857" opacity=".85"></rect>
                         <rect x="38" y="23" width="174" height="104" rx="4" fill="#059669"></rect>
                         <line x1="58" y1="45" x2="175" y2="45" stroke="#6ee7b7" stroke-width="1.5" stroke-linecap="round" opacity=".6"></line>
@@ -44,7 +44,7 @@
                         <span class="material-icons-outlined" style="font-size:10px">auto_awesome</span> Selamat Datang
                     </span>
                     <h2 class="font-display font-bold text-xl lg:text-[22px] leading-tight text-foreground mb-1.5">
-                        Dashboard Akademik<br>Neo Feeder PDDIKTI
+                        Dashboard Akademik<br>STIT Tunas Bangsa Banjarnegara
                     </h2>
                     <p class="text-[12px] leading-relaxed text-muted mb-3">
                         Kelola data akademik perguruan tinggi terintegrasi dengan standar nasional Kemendikbudristek.
@@ -135,12 +135,12 @@
                     <div class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></div>
                     <h3 class="font-display font-bold text-[13px] text-foreground">Log Sinkronisasi</h3>
                 </div>
-                <x-button.button variant="primary" size="sm" icon="sync" class="!px-3 !py-1.5 !text-[11px]">
+                <x-button.button variant="primary" size="sm" icon="sync" class="px-3 py-1.5 text-sm">
                     Sync
                 </x-button.button>
             </div>
 
-            <div class="space-y-1 max-h-[240px] overflow-y-auto pr-1">
+            <div class="space-y-1 max-h-60 overflow-y-auto pr-1">
                 <!-- Item Log -->
                 <div class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-surface cursor-pointer transition-colors">
                     <div class="w-6 h-6 rounded-md bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 flex items-center justify-center shrink-0">

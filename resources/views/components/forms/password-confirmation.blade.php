@@ -9,6 +9,7 @@
         <input
             :type="visibleConfirm ? 'text':'password'"
             x-model="confirmPassword"
+            id="password_confirmation"
             name="password_confirmation"
             class="w-full pr-12 px-4 py-2.5 rounded-lg border border-card-border bg-surface text-sm"
         >

@@ -5,22 +5,19 @@
 @section('content')
     <!-- LEFT -->
         <section class="flex w-full flex-1 flex-col px-6 py-10 lg:w-1/2">
-            <!-- Logo (Optional Link to Home) -->
             <div class="mb-10">
-                <!-- Warna logo tetap biru di light mode, menjadi lebih lembut (white/biru muda) di dark mode -->
                 <a href="{{ url('/') }}" class="text-2xl font-bold text-primary dark:text-white flex items-center gap-2 transition-colors">
                     <img src="{{ asset('logo-siakad.svg') }}" class="w-48" alt="e-SIAKAD">
                 </a>
             </div>
             <!-- Form -->
             <div class="mx-auto flex w-full max-w-md flex-1 flex-col justify-center">
-                <h2 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">@yield('title')</h2>
+                <h3 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">@yield('title')</h3>
 
                 <p class="mb-9 text-sm text-gray-500 dark:text-gray-400">
                     No worries, we'll send you reset instructions.
                 </p>
 
-                <!-- Success Message (Muncul jika Laravel berhasil mengirim email) -->
                 @if (session('status'))
                     <div class="mb-5 flex items-center gap-3 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-600 dark:border-green-700 dark:bg-green-900/20 dark:text-green-400">
                         <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

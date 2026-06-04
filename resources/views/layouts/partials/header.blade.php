@@ -10,7 +10,7 @@
             class="w-8 h-8 rounded-lg bg-surface cursor-pointer hover:bg-border
             flex items-center justify-center transition-colors">
 
-            <span class="material-icons-outlined text-[18px] text-muted">
+            <span class="material-icons-outlined icon-md text-muted">
                 menu
             </span>
         </button>
@@ -80,7 +80,7 @@
                 class="relative w-8 h-8 rounded-lg bg-surface hover:bg-border
                 flex items-center justify-center transition-colors cursor-pointer">
 
-                <span class="material-icons-outlined text-[18px] text-muted">
+                <span class="material-icons-outlined icon-md text-muted">
                     notifications_none
                 </span>
 
@@ -155,7 +155,7 @@
                                     Mahasiswa sudah dapat melakukan pengisian KRS.
                                 </div>
 
-                                <div class="text-[11px] text-muted mt-1">
+                                <div class="text-sm text-muted mt-1">
                                     5 menit yang lalu
                                 </div>
                             </div>
@@ -187,7 +187,7 @@
                                     12 mahasiswa belum melakukan pembayaran.
                                 </div>
 
-                                <div class="text-[11px] text-muted mt-1">
+                                <div class="text-sm text-muted mt-1">
                                     1 jam yang lalu
                                 </div>
 
@@ -221,7 +221,7 @@
                                     Sinkronisasi berhasil dilakukan.
                                 </div>
 
-                                <div class="text-[11px] text-muted mt-1">
+                                <div class="text-sm text-muted mt-1">
                                     Kemarin
                                 </div>
                             </div>
@@ -248,7 +248,7 @@
             class="w-8 h-8 rounded-lg bg-surface hover:bg-border
             flex items-center justify-center transition-colors cursor-pointer">
 
-            <span class="material-icons-outlined text-[18px] text-muted" x-text="themeIcon">
+            <span class="material-icons-outlined icon-md text-muted" x-text="themeIcon">
             </span>
 
         </button>
@@ -312,14 +312,12 @@
                     </a>
 
                     <hr class="my-1 border-card-border">
-                    <button
-                        class="w-full text-sm flex items-center gap-2 px-3 py-2 cursor-pointer
-                             text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10">
-                        <span class="material-icons-outlined">
-                            logout
-                        </span>
-                        Keluar
-                    </button>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-button.button-link type="submit" icon="logout" variant="default" size="sm" class="w-full mt-1">
+                            Keluar
+                        </x-button.button-link>
+                    </form>
                 </div>
             </div>
 

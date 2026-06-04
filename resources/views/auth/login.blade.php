@@ -17,7 +17,7 @@
             <h2 class="mb-2 text-2xl font-bold text-foreground">@yield('title')</h2>
             <p class="mb-8 text-md text-muted">Enter your email and password to sign in!</p>
 
-            <form method="POST" action="{{ Route::has('login') ? route('login') : '#' }}" class="space-y-5">
+            <form method="POST" action="{{ Route::has('login.store') ? route('login.store') : '#' }}" class="space-y-5">
                 @csrf
 
                 <x-input.input
@@ -28,20 +28,27 @@
                     size="md"
                     icon="email"
                     value="{{ old('email') }}"
-                    required="true" />
-                <x-input.input name="password" type="password" label="Password" placeholder="Enter your password" size="md" icon="lock" required="true" />
+                    required />
+                <x-input.input name="password" type="password" label="Password" placeholder="Enter your password" size="md" icon="lock" required />
 
                 <x-forms.remember-me />
+
+                <p class="text-sm text-muted">
+                    Demo Account: <br>
+                    Email: <code>admin@mail.com</code> <br>
+                    Password: <code>12345678</code>
+                </p>
 
                 <x-button.button type="submit" variant="primary" size="sm" class="w-full" icon="login">
                     Sign In
                 </x-button.button>
             </form>
 
-            <p class="my-6 text-center text-sm text-muted">Or sign in with</p>
+            <x-ui.divider text="Or sign in with" />
 
 
-            <div class="grid gap-3 mt-4">
+
+            <div class="grid gap-3 ">
                 <x-button.social-login
                     provider="google"
                     size="sm"

@@ -687,7 +687,7 @@
                                     <div class="text-xs text-muted">IP Address: 182.1.23.104 • <span class="text-brand-600 font-medium">Perangkat Ini</span></div>
                                 </div>
                             </div>
-                            <span class="text-[11px] font-semibold text-brand-700 bg-brand-50 dark:bg-brand-950/50 px-2 py-0.5 rounded-md">Aktif</span>
+                            <span class="text-sm font-semibold text-brand-700 bg-brand-50 dark:bg-brand-950/50 px-2 py-0.5 rounded-md">Aktif</span>
                         </div>
                         <div class="p-4 bg-card border border-card-border rounded-xl flex items-center justify-between shadow-xs opacity-75">
                             <div class="flex items-center gap-3">

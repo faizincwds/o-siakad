@@ -29,11 +29,11 @@
 >
 
     <div class="relative flex min-h-screen flex-col lg:flex-row">
-        
+
         @yield('content')
 
         <!-- Theme Toggle -->
-        <div class="fixed right-6 bottom-6 z-50">
+        <div class="fixed right-3 bottom-3 z-50">
 
             <button
                 type="button"

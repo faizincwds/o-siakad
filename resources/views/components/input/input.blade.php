@@ -33,10 +33,10 @@
                 {{ $icon }}
             </span>
         @endif
-        
+
           @php
-             $baseClass = 'w-full rounded-lg border border-card-border text-foreground 
-                           focus:border-brand-300 focus:ring-1 focus:ring-brand-50 
+             $baseClass = 'w-full rounded-lg border border-card-border text-foreground
+                           focus:border-brand-300 focus:ring-1 focus:ring-brand-50
                            outline-none transition-all py-2.5 text-sm';
              $paddingClass = $icon ? 'pl-10 pr-4' : 'px-4';
              $stateClass = $readonly ? 'bg-gray-100 dark:bg-gray-800 cursor-not-allowed' : '';
