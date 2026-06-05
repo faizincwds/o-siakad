@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\UpdatePasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'guest'])->group(function () {
@@ -14,22 +15,16 @@ Route::middleware(['web', 'guest'])->group(function () {
     Route::get('forgot', [ForgotPasswordController::class, 'index'])->name('forgot');
     Route::post('forgot', [ForgotPasswordController::class, 'store'])->name('password.email');
     Route::get('/reset-password/{token}', [ResetPasswordController::class, 'index'])->name('password.reset');
-    Route::post('/reset-password', [ResetPasswordController::class, 'store'])->name('password.update');
+    Route::post('/reset-password', [ResetPasswordController::class, 'store'])->name('password.store');
 });
 
 Route::middleware(['web', 'auth'])->group(function () {
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
+    Route::post('/update-password', [UpdatePasswordController::class, 'update'])->name('password.update');
+
     Route::get('/', function () {
         return view('pages.dashboard.index');
     })->name('dashboard');
-});
-
-Route::get('/test-csrf', function () {
-    dd(
-        csrf_token(),
-        session()->getId(),
-        config('session.driver')
-    );
 });
 
 Route::middleware(['web'])->group(function () {

@@ -95,6 +95,7 @@
   </div>
 @stack('scripts')
 <script>
+    window.flashToast = @json(session('toast'));
     window.appConfig = {
         activePage:
             @json(Route::currentRouteName()),

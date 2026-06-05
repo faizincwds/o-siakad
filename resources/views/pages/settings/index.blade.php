@@ -127,7 +127,8 @@
                     <h3 class="text-lg font-bold text-foreground mb-0.5 tracking-tight">Identitas Perguruan Tinggi</h3>
                     <p class="text-xs text-muted mb-6">Kelola data dasar kampus yang akan tampil pada sistem dan surat resmi.</p>
 
-                    <form class="space-y-5">
+                    <form class="space-y-5" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST">
+                        @csrf
                         <div class="grid md:grid-cols-3 gap-5">
                             <x-input.input name="nama_pt" icon="apartment" label="Nama PT" value="STIT Tunas Bangsa" required />
                             <x-input.input name="singkatan_pt" icon="pin_drop" label="Singkatan PT" value="STITUSA" required />
@@ -170,7 +171,8 @@
                     <h3 class="text-lg font-bold text-foreground mb-0.5 tracking-tight">Profil Administrator</h3>
                     <p class="text-xs text-muted mb-6">Kelola informasi akun super admin sistem.</p>
 
-                    <form class="space-y-5">
+                    <form class="space-y-5" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST">
+                        @csrf
                         <div class="flex items-center gap-4 p-4 bg-card border border-card-border rounded-xl shadow-xs">
                             <img src="https://picsum.photos/seed/admin-user/100/100.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-brand-100">
                             <div>
@@ -201,9 +203,10 @@
                     <h3 class="text-lg font-bold text-foreground mb-0.5 tracking-tight">Keamanan Password</h3>
                     <p class="text-xs text-muted mb-6">Pastikan password Anda kuat dan terdiri dari kombinasi karakter.</p>
 
-                    <form class="space-y-5">
-                        <x-input.password name="password_old" label="Password Saat Ini" icon="lock" />
-                        <x-forms.password-field name="password_new" :generator="false" :copy="true" />
+                    <form class="space-y-5" action="{{ Route::has('password.update') ? route('password.update') : '#' }}" method="POST">
+                        @csrf
+                        <x-input.password name="current_password" label="Password Saat Ini" icon="lock" />
+                        <x-forms.password-field :generator="false" :copy="true" />
                         <div class="pt-4 border-t border-card-border mt-6 flex justify-end">
                             <x-button.button variant="brand" icon="lock_reset" size="sm">Ganti Password</x-button.button>
                         </div>
@@ -222,7 +225,8 @@
                     <h3 class="text-lg font-bold text-foreground mb-0.5 tracking-tight">Pengaturan Mail Server</h3>
                     <p class="text-xs text-muted mb-6">Konfigurasi SMTP untuk pengiriman notifikasi email sistem.</p>
 
-                    <form class="space-y-5">
+                    <form class="space-y-5" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST">
+                        @csrf
                         <div class="grid md:grid-cols-2 gap-5">
                             <x-input.input name="smtp_host" label="SMTP Host" icon="dns" placeholder="smtp.gmail.com" />
                             <x-input.input name="smtp_port" label="SMTP Port" icon="settings_ethernet" placeholder="465" />
@@ -254,7 +258,8 @@
                     <h3 class="text-lg font-bold text-foreground mb-0.5 tracking-tight">Logo & Tampilan</h3>
                     <p class="text-xs text-muted mb-6">Kustomisasi visual aplikasi sesuai identitas dan standarisasi warna kampus.</p>
 
-                    <form class="space-y-5">
+                    <form class="space-y-5" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="grid md:grid-cols-2 gap-5">
                             <x-input.input name="app_name" label="Nama Aplikasi (Tab Browser)" icon="title" value="Sistem Informasi Akademik" />
                             <x-input.input name="app_tagline" label="Slogan / Tagline Kampus" icon="short_text" value="Unggul, Berkarakter & Berteknologi" />
@@ -290,7 +295,8 @@
                     <h3 class="text-lg font-bold text-foreground mb-0.5 tracking-tight">Tahun Akademik & Periode</h3>
                     <p class="text-xs text-muted mb-6">Tentukan semester aktif dan batas waktu transaksi akademik mahasiswa.</p>
 
-                    <form class="space-y-5">
+                    <form class="space-y-5" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="grid md:grid-cols-2 gap-5">
                             <x-input.select name="periode_aktif" label="Semester Aktif Utama" icon="calendar_today" :options="[
                                 '20252' => '2025/2026 Genap',
@@ -322,7 +328,8 @@
                     <h3 class="text-lg font-bold text-foreground mb-0.5 tracking-tight">Integrasi Neo Feeder</h3>
                     <p class="text-xs text-muted mb-6">Hubungkan sistem dengan PDDikti untuk sinkronisasi data.</p>
 
-                    <form class="space-y-5">
+                    <form class="space-y-5" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST">
+                        @csrf
                         <x-input.input name="feeder_url" label="URL API Feeder" icon="link" placeholder="https://pddikti..." />
                         <div class="grid md:grid-cols-2 gap-5">
                             <x-input.select name="feeder_env" label="Environment" :options="['prod' => 'Produksi', 'dev' => 'Development/Sandbox']" />
@@ -344,7 +351,8 @@
                     <h3 class="text-lg font-bold text-foreground mb-0.5 tracking-tight">WhatsApp Gateway</h3>
                     <p class="text-xs text-muted mb-6">Konfigurasi server WhatsApp untuk notifikasi broadcast.</p>
 
-                    <form class="space-y-5">
+                    <form class="space-y-5" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST">
+                        @csrf
                         <div class="grid md:grid-cols-2 gap-5">
                             <x-input.input name="wa_url" label="Server URL" icon="hub" placeholder="https://wa.yourdomain.com" />
                             <x-input.input name="wa_token" label="API Token" icon="key" type="password" />
@@ -372,7 +380,8 @@
                         <span class="px-2.5 py-0.5 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 text-xs font-semibold rounded-md border border-emerald-100 dark:border-emerald-900/30">Sukses</span>
                     </div>
 
-                    <form class="space-y-5">
+                    <form class="space-y-5" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST">
+                        @csrf
                         <div class="grid md:grid-cols-2 gap-5">
                             <x-input.select name="backup_driver" label="Locations" icon="storage" :options="['local' => 'Local Server', 's3' => 'Amazon S3', 'gdrive' => 'Google Drive']" />
                             <x-input.select name="backup_schedule" label="Schedule" icon="schedule" :options="['daily' => 'Harian', 'weekly' => 'Mingguan', 'monthly' => 'Bulanan']" />
@@ -392,7 +401,8 @@
                     <h3 class="text-lg font-bold text-foreground mb-0.5 tracking-tight">Pengaturan API Eksternal</h3>
                     <p class="text-xs text-muted mb-6">Manajemen akses untuk integrasi pihak ketiga.</p>
 
-                    <form class="space-y-5">
+                    <form class="space-y-5" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST">
+                        @csrf
                         <div class="grid md:grid-cols-2 gap-5">
                             <div class="md:col-span-2">
                                 <x-input.input name="api_key" label="API Key" icon="vpn_key" readonly value="sk-live-1234567890abcdef" class="bg-surface/50 font-mono text-sm">
@@ -540,7 +550,8 @@
                                 </button>
                             </div>
 
-                            <form class="p-5 space-y-4">
+                            <form class="p-5 space-y-4" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST">
+                                @csrf
                                 <div class="grid grid-cols-2 gap-4">
                                     <x-input.input name="modal_nilai_huruf" label="Nilai Huruf" placeholder="Contoh: A-" required />
                                     <x-input.input name="modal_bobot_nilai" type="number" step="0.01" label="Bobot Nilai" placeholder="4.00" required />
@@ -602,7 +613,7 @@
                                 <x-button.button type="button" @click="openDeleteModal = false" variant="outline" size="sm">
                                     Batal
                                 </x-button.button>
-                                <form action="#" method="POST" class="inline">
+                                <form class="inline" action="{{ Route::has('settings.deleteSkala') ? route('settings.deleteSkala', ['skala' => 'selectedSkala']) : '#' }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <x-button.button type="submit" variant="danger" icon="delete" size="sm">
@@ -647,7 +658,8 @@
                                 </button>
                             </div>
 
-                            <form class="p-5 space-y-4">
+                            <form class="p-5 space-y-4" action="{{ Route::has('settings.update') ? route('settings.update') : '#' }}" method="POST">
+                                @csrf
                                 <div class="grid grid-cols-2 gap-4">
                                     <x-input.input name="modal_nilai_huruf" label="Nilai Huruf" placeholder="Contoh: A-" required />
                                     <x-input.input name="modal_bobot_nilai" type="number" step="0.01" label="Bobot Nilai" placeholder="4.00" required />

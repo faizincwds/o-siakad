@@ -4,22 +4,35 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
-Route::controller(SettingController::class)->group(function () {
-    Route::get('/settings', 'index')->name('settings.index');
-    Route::get('/settings/roles', 'roles')->name('settings.roles');
-    Route::get('/settings/profile', 'profile')->name('settings.profile');
-    Route::get('/settings/icons', 'icons')->name('settings.icons');
-    Route::post('/settings', 'update')->name('settings.update');
-    Route::get('/settings/mail', 'mail')->name('settings.mail');
-    Route::post('/settings/mail', 'updateMail')->name('settings.updateMail');
-    Route::get('/settings/notification', 'notification')->name('settings.notification');
-    Route::post('/settings/notification', 'updateNotification')->name('settings.updateNotification');
-    Route::get('/settings/backup', 'backup')->name('settings.backup');
-    Route::post('/settings/backup', 'updateBackup')->name('settings.updateBackup');
-    Route::get('/settings/security', 'security')->name('settings.security');
-    Route::post('/settings/security', 'updateSecurity')->name('settings.updateSecurity');
-    Route::post('/settings/reset', 'reset')->name('settings.reset');
-});
+Route::middleware(['auth'])
+    ->prefix('settings')
+    ->name('settings.')
+    ->controller(SettingController::class)
+    ->group(function () {
 
-Route::post('/import', [MahasiswaController::class, 'import'])
-    ->name('import');
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'update')->name('update');
+
+        Route::get('/roles', 'roles')->name('roles');
+
+        Route::get('/profile', 'profile')->name('profile');
+
+        Route::get('/icons', 'icons')->name('icons');
+
+        Route::get('/mail', 'mail')->name('mail');
+        Route::post('/mail', 'updateMail')->name('mail.update');
+
+        Route::get('/notification', 'notification')->name('notification');
+        Route::post('/notification', 'updateNotification')->name('notification.update');
+
+        Route::get('/backup', 'backup')->name('backup');
+        Route::post('/backup', 'updateBackup')->name('backup.update');
+
+        Route::get('/security', 'security')->name('security');
+        Route::post('/security', 'updateSecurity')->name('security.update');
+
+        Route::post('/reset', 'reset')->name('reset');
+    });
+
+
+Route::post('/import', [MahasiswaController::class, 'import'])->name('import');

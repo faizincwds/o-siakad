@@ -52,7 +52,7 @@
     "src": "_instrument-sans-600-normal-DMks36a2.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BkBeL6nq.css",
+    "file": "assets/app-ccUPuBIy.css",
     "name": "app",
     "names": [
       "app.css"
@@ -103,7 +103,7 @@
     "src": "resources/css/fonts/SpaceGrotesk/SpaceGrotesk-SemiBold.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-ByqxKdiv.js",
+    "file": "assets/app-BXgTUw5o.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

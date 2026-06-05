@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Settings\UpdatePasswordRequest;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class ResetPasswordController extends Controller
 {
@@ -68,5 +69,20 @@ class ResetPasswordController extends Controller
                 'type' => 'error',
                 'message' => __($status),
             ]);
+    }
+
+    public function update(UpdatePasswordRequest $request): RedirectResponse
+    {
+        dd($request->all());
+        $request->user()->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()
+            ->route('settings')
+            ->with('toast', [
+                'type' => 'success',
+                'message' => 'Password berhasil diperbarui.',
+        ]);
     }
 }

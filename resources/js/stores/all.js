@@ -145,28 +145,47 @@ export default function themesUI() {
 
     /* ─── Init ─── */
     init() {
-      this.windowWidth = window.innerWidth;
-      window.addEventListener('resize', () => {
         this.windowWidth = window.innerWidth;
-      });
+        window.addEventListener('resize', () => {
+            this.windowWidth = window.innerWidth;
+        });
 
-      this.$nextTick(() => {
-        this.loaded = true
-    })
+        // global helper
+        window.toast = (msg, type = 'info') => {
+            this.toast(msg, type);
+        };
 
-      // Auto-open active parent menus
-      this.menuItems.forEach((item, idx) => {
-        if (item.children?.some(c => c.route === this.activePage)) {
-          this.openMenus.push(idx);
+        // flash message dari Laravel
+        if (window.flashToast) {
+
+            this.$nextTick(() => {
+
+                this.toast(
+                    window.flashToast.message,
+                    window.flashToast.type
+                );
+
+            });
+
         }
-      });
 
-      // Apply saved theme
-      const saved = localStorage.getItem('nf-theme');
-      if (saved === 'light' || saved === 'dark') {
-        this.theme = saved;
-      }
-      this.applyTheme();
+        this.$nextTick(() => {
+            this.loaded = true
+        })
+
+        // Auto-open active parent menus
+        this.menuItems.forEach((item, idx) => {
+            if (item.children?.some(c => c.route === this.activePage)) {
+            this.openMenus.push(idx);
+            }
+        });
+
+        // Apply saved theme
+        const saved = localStorage.getItem('nf-theme');
+        if (saved === 'light' || saved === 'dark') {
+            this.theme = saved;
+        }
+        this.applyTheme();
     }
   };
 }
