@@ -11,6 +11,41 @@
         <p class="text-muted mt-2">Referensi penggunaan seluruh komponen dan ikon yang tersedia.</p>
     </div>
 
+
+    {{-- Penggunaan --}}
+
+{{-- Dasar --}}
+<x-icon name="search" />
+
+{{-- Dengan ukuran --}}
+<x-icon name="book-open" size="sm" />
+<x-icon name="graduation-cap" size="lg" />
+
+{{-- Dengan warna (ikut currentColor) --}}
+<x-icon name="home" class="text-brand" />
+<x-icon name="trash-2" class="text-danger" />
+
+{{-- Dengan stroke tipis --}}
+<x-icon name="settings" stroke-width="1.5" />
+
+{{-- Di dalam tombol --}}
+<button class="flex items-center gap-2 bg-brand text-on-brand px-4 py-2 rounded-button">
+    <x-icon name="plus" size="sm" />
+    Tambah Mahasiswa
+</button>
+
+{{-- Di sidebar --}}
+<a class="flex items-center gap-3 text-sidebar-text">
+    <x-icon name="dashboard" size="md" />
+    <span>Dashboard</span>
+</a>
+
+{{-- Status badge --}}
+<span class="flex items-center gap-1.5 text-badge-active">
+    <x-icon name="check-circle" size="sm" />
+    Aktif
+</span>
+
     <div class="bg-card border border-card-border rounded-xl p-5">
 
             <h3 class="font-semibold mb-2">

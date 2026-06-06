@@ -1,172 +1,261 @@
 @import "tailwindcss";
+
+@source "../views/**/*.blade.php";
 @source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
 @source "../../storage/framework/views/*.php";
-@source "../**/*.blade.php";
 @source "../**/*.js";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
 
-  --text-h1: 1.5rem;     /* 24px - Judul Utama Halaman */
-  --text-h2: 0.875rem;   /* 14px - Judul Section / Card (Ditambah tracking & uppercase di base) */
-  --text-h3: 1.125rem;   /* 18px - Angka Metrik / Judul Modal / Toolbar */
-  --text-h4: 0.875rem;   /* 14px - Judul Informasi Sub-Card */
-  --text-h5: 0.75rem;    /* 12px - Penanda Kontrol Grup / Label */
-  --text-h6: 0.6875rem;  /* 11px - Metadata Box Terkecil */
+    /* ── Fonts ─────────────────────────── */
 
-  --lh-h1: 2rem;
-  --lh-h2: 1.25rem;
-  --lh-h3: 1.5rem;
-  --lh-h4: 1.25rem;
-  --lh-h5: 1rem;
-  --lh-h6: 1rem;
+    --font-sans: "Inter", sans-serif;
+    --font-heading: "Poppins", sans-serif;
 
-  --text-title-lg: 1.25rem;   /* 20px (Sebelumnya 24px - Terlalu besar untuk judul internal) */
-  --text-title-md: 1.125rem;  /* 18px (Sebelumnya 20px) */
-  --text-title-sm: 1rem;      /* 16px (Sebelumnya 18px) */
+    /* ── Brand Colors (Emerald) ────────── */
 
-  --text-body: 0.8125rem;     /* 13px - Ukuran ideal untuk teks deskripsi & paragraf SIAKAD */
-  --text-caption: 0.75rem;    /* 12px - Untuk label, status badge, dan sub-informasi */
+    --color-brand-50:  #ecfdf5;
+    --color-brand-100: #d1fae5;
+    --color-brand-200: #a7f3d0;
+    --color-brand-300: #6ee7b7;
+    --color-brand-400: #34d399;
+    --color-brand-500: #10b981;
+    --color-brand-600: #059669;
+    --color-brand-700: #047857;
+    --color-brand-800: #065f46;
+    --color-brand-900: #064e3b;
+    --color-brand:     #059669;
+    --color-on-brand:  #ffffff;
 
-  --text-xs: 0.6875rem;       /* 11px - Sangat baik untuk meta-data, timestamp log, dan th tabel */
-  --text-sm: 0.75rem;         /* 12px - Standar untuk baris data tabel (td), input value, dan teks tombol */
-  --text-md: 0.8125rem;       /* 13px - Jembatan antara teks sm dan body, ideal untuk teks menu samping */
+    /* ── Surface ───────────────────────── */
 
-  --icon-xs: 12px;
-  --icon-sm: 12.5px;
-  --icon-md: 18px;
-  --icon-lg: 20px;
-  --icon-xl: 24px;
+    --color-surface:      #f4f7fa;
+    --color-surface-alt:  #f8fafc;
+    --color-card:         #ffffff;
+    --color-card-border:  #dfe6ee;
+    --color-foreground:   #0f172a;
+    --color-muted:        #64748b;
+    --color-border:       #e2e8f0;
 
-  --color-brand-50: #ecfdf5;
-  --color-brand-100: #d1fae5;
-  --color-brand-200: #a7f3d0;
-  --color-brand-300: #6ee7b7;
-  --color-brand-400: #34d399;
-  --color-brand-500: #10b981;
-  --color-brand-600: #059669;
-  --color-brand-700: #047857;
-  --color-brand-800: #065f46;
-  --color-brand-900: #064e3b;
+    /* ── Sidebar ───────────────────────── */
 
-  --color-sidebar: #ffffff;
-  --color-sidebar-deep: #f9fafb;
-  --color-sidebar-deepest: #f3f4f6;
-  --color-sidebar-border: #e5e7eb;
-  --color-sidebar-text: #0f172a;
-  --color-sidebar-muted: #343d4a;
-  --color-sidebar-dim: #424f61;
+    --color-sidebar:         #ffffff;
+    --color-sidebar-deep:    #f9fafb;
+    --color-sidebar-deepest: #f3f4f6;
+    --color-sidebar-border:  #e5e7eb;
+    --color-sidebar-text:    #0f172a;
+    --color-sidebar-muted:   #343d4a;
+    --color-sidebar-dim:     #424f61;
 
-  --color-surface: #f4f7fa;
-  --color-card: #ffffff;
-  --color-card-border: #dfe6ee;
-  --color-foreground: #0f172a;
-  --color-muted: #64748b;
-  --color-border: #e2e8f0;
+    /* ── Table (SIAKAD = 70% tabel) ──── */
+
+    --color-table-header:     #f1f5f9;
+    --color-table-header-text: #334155;
+    --color-table-row-alt:    #f8fafc;
+    --color-table-row-hover:  #f0fdf4;
+    --color-table-border:     #e2e8f0;
+    --color-table-stripe:     #f8fafc;
+
+    /* ── Status / Badge ─────────────── */
+
+    --color-info:       #0284c7;
+    --color-on-info:    #ffffff;
+    --color-success:    #059669;
+    --color-on-success: #ffffff;
+    --color-warning:    #d97706;
+    --color-on-warning: #ffffff;
+    --color-danger:     #dc2626;
+    --color-on-danger:  #ffffff;
+
+    --color-badge-active:    #059669;   /* Aktif */
+    --color-on-badge-active: #ffffff;
+    --color-badge-leave:     #d97706;   /* Cuti */
+    --color-on-badge-leave:  #ffffff;
+    --color-badge-drop:      #dc2626;   /* Drop Out / DO */
+    --color-on-badge-drop:   #ffffff;
+    --color-badge-graduate:  #0284c7;   /* Lulus */
+    --color-on-badge-graduate: #ffffff;
+
+    /* ── Border Radius ─────────────────── */
+
+    --radius-sm:     0.25rem;
+    --radius-md:     0.5rem;
+    --radius-lg:     0.75rem;
+    --radius-xl:     1rem;
+    --radius-input:  0.5rem;
+    --radius-button: 0.5rem;
+    --radius-card:   0.75rem;
+    --radius-modal:  1rem;
+    --radius-badge:  9999px;
+
+    /* ── Shadows ───────────────────────── */
+
+    --shadow-card:     0 1px 3px rgb(0 0 0 / 0.1), 0 1px 2px rgb(0 0 0 / 0.06);
+    --shadow-dropdown: 0 10px 15px rgb(0 0 0 / 0.1), 0 4px 6px rgb(0 0 0 / 0.05);
+    --shadow-modal:    0 25px 50px rgb(0 0 0 / 0.25);
+
+    /* ── Z-Index ───────────────────────── */
+
+    --z-dropdown: 1000;
+    --z-sticky:   1010;
+    --z-sidebar:  1020;
+    --z-drawer:   1030;
+    --z-modal:    1040;
+    --z-toast:    1050;
+
+    /* ── Duration ──────────────────────── */
+
+    --duration-fast:   150ms;
+    --duration-normal: 300ms;
+    --duration-slow:   500ms;
+
+    /* ── Icon Sizes (Lucide SVG) ─────── */
+
+    --icon-xs: 14px;
+    --icon-sm: 16px;
+    --icon-md: 20px;
+    --icon-lg: 24px;
+    --icon-xl: 28px;
+
+    /* ── SIAKAD Typography ───────────── */
+    /* Token khusus SIAKAD — TIDAK menimpa default Tailwind */
+
+    --text-page-title:   1.5rem;     /* 24px — Judul halaman utama */
+    --text-section:      0.875rem;   /* 14px — Judul section card */
+    --text-metric:       1.125rem;   /* 18px — Angka dashboard / modal title */
+    --text-subsection:   0.875rem;   /* 14px — Judul sub-card */
+    --text-label:        0.75rem;    /* 12px — Label kontrol, field */
+    --text-meta:         0.6875rem;  /* 11px — Metadata terkecil */
+
+    --text-title-lg:     1.25rem;    /* 20px */
+    --text-title-md:     1.125rem;   /* 18px */
+    --text-title-sm:     1rem;       /* 16px */
+
+    --text-body:         0.8125rem;  /* 13px — Paragraf & deskripsi */
+    --text-caption:      0.75rem;    /* 12px — Badge, sub-info */
+
+    /* ── Line Heights ─────────────────── */
+
+    --lh-page-title: 2rem;
+    --lh-section:    1.25rem;
+    --lh-metric:     1.5rem;
+    --lh-subsection: 1.25rem;
+    --lh-label:      1rem;
+    --lh-meta:       1rem;
+
+    /* ── Layout Tokens ─────────────────── */
+
+    --sidebar-width:          260px;
+    --sidebar-width-collapse: 80px;
+    --topbar-height:          70px;
 }
+
+/* =========================================
+   Dark Mode Overrides
+========================================= */
 
 .dark {
-  --color-sidebar: #0f172b;
-  --color-sidebar-deep: #0f172a;
-  --color-sidebar-deepest: #1a2332;
-  --color-sidebar-border: rgba(255,255,255,.07);
-  --color-sidebar-text: #ecfdf5;
-  --color-sidebar-muted: rgba(209, 250, 229, 0.895);
-  --color-sidebar-dim: rgba(209, 250, 229, 0.781);
+    /* Surface */
+    --color-surface:      #0f172a;
+    --color-surface-alt:  #020617;
+    --color-card:         #0e172d;
+    --color-card-border:  #2a3a4a;
+    --color-foreground:   #e2e8f0;
+    --color-muted:        #94a3b8;
+    --color-border:       #1e2d3d;
 
-  --color-surface: #0f172a;
-  --color-card: #0e172d;
-  --color-card-border: #2a3a4a;
-  --color-foreground: #e2e8f0;
-  --color-muted: #94a3b8;
-  --color-border: #1e2d3d;
+    /* Sidebar */
+    --color-sidebar:         #0f172b;
+    --color-sidebar-deep:    #0f172a;
+    --color-sidebar-deepest: #1a2332;
+    --color-sidebar-border:  rgba(255, 255, 255, 0.07);
+    --color-sidebar-text:    #ecfdf5;
+    --color-sidebar-muted:   rgba(209, 250, 229, 0.895);
+    --color-sidebar-dim:     rgba(209, 250, 229, 0.781);
+
+    /* Table */
+    --color-table-header:      #1e293b;
+    --color-table-header-text: #cbd5e1;
+    --color-table-row-alt:     #0f172a;
+    --color-table-row-hover:   #064e3b;
+    --color-table-border:      #1e293b;
+    --color-table-stripe:      #0f172a;
 }
 
-/* Scrollbar */
-* { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,.12) transparent; }
-.dark * { scrollbar-color: rgba(255,255,255,.1) transparent; }
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 99px; }
-.dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); }
+/* =========================================
+   Scrollbar
+========================================= */
 
-/* Submenu animation */
-.submenu { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
-.submenu.open { grid-template-rows: 1fr; }
-.submenu > div { overflow: hidden; }
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
+}
 
-@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
-@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.dark * {
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
 
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 99px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================
+   Submenu Animation
+========================================= */
+
+.submenu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+}
+
+.submenu.open {
+    grid-template-rows: 1fr;
+}
+
+.submenu > div {
+    overflow: hidden;
+}
+
+/* =========================================
+   Keyframes
+========================================= */
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* =========================================
+   Base Layer
+========================================= */
 @font-face {
   font-family: 'Material Icons Outlined';
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v110/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2) format('woff2');
-}
-
-/* Plus Jakarta Sans */
-@font-face {
-    font-family: 'Plus Jakarta Sans';
-    src: url('fonts/PlusJakartaSans/PlusJakartaSans-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Plus Jakarta Sans';
-    src: url('fonts/PlusJakartaSans/PlusJakartaSans-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Plus Jakarta Sans';
-    src: url('fonts/PlusJakartaSans/PlusJakartaSans-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Plus Jakarta Sans';
-    src: url('fonts/PlusJakartaSans/PlusJakartaSans-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* Space Grotesk */
-@font-face {
-    font-family: 'Space Grotesk';
-    src: url('fonts/SpaceGrotesk/SpaceGrotesk-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Space Grotesk';
-    src: url('fonts/SpaceGrotesk/SpaceGrotesk-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Space Grotesk';
-    src: url('fonts/SpaceGrotesk/SpaceGrotesk-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Space Grotesk';
-    src: url('fonts/SpaceGrotesk/SpaceGrotesk-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+  src: url(./materialiconsoutlined.woff2) format('woff2');
 }
 
 @layer components {
@@ -189,68 +278,74 @@
   }
 }
 
-@utility icon-xs { font-size: var(--icon-xs); }
-@utility icon-sm { font-size: var(--icon-sm); }
-@utility icon-md { font-size: var(--icon-md); }
-@utility icon-lg { font-size: var(--icon-lg); }
-@utility icon-xl { font-size: var(--icon-xl); }
 
 @layer base {
-    body {
-        font-family: var(--font-body);
+
+    html {
+        font-family: var(--font-sans);
     }
 
-    /* OPTIMASI BASE STYLING: Sinkronisasi gaya default tag HTML agar tidak destruktif */
+    button {
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
     h1 {
-        font-size: var(--text-h1);
-        line-height: var(--lh-h1);
+        font-size: var(--text-page-title);
+        line-height: var(--lh-page-title);
         font-weight: 700;
         letter-spacing: -0.025em;
-        font-family: var(--font-display);
+        font-family: var(--font-heading);
         color: var(--color-foreground);
     }
 
-    h2 {
-        font-size: var(--text-h2);
-        line-height: var(--lh-h2);
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-family: var(--font-body); /* Diganti ke body agar teks uppercase lebih clean */
-        color: var(--color-muted);
-    }
-
     h3 {
-        font-size: var(--text-h3);
-        line-height: var(--lh-h3);
+        font-size: var(--text-metric);
+        line-height: var(--lh-metric);
         font-weight: 700;
         letter-spacing: -0.02em;
-        font-family: var(--font-display);
+        font-family: var(--font-heading);
         color: var(--color-foreground);
     }
 
     h4 {
-        font-size: var(--text-h4);
-        line-height: var(--lh-h4);
+        font-size: var(--text-subsection);
+        line-height: var(--lh-subsection);
         font-weight: 600;
         color: var(--color-foreground);
     }
+}
 
-    h5 {
-        font-size: var(--text-h5);
-        line-height: var(--lh-h5);
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--color-muted);
+/* =========================================
+   Utilities
+========================================= */
+
+@layer utilities {
+
+    .card-shadow {
+        box-shadow: var(--shadow-card);
     }
 
-    h6 {
-        font-size: var(--text-h6);
-        line-height: var(--lh-h6);
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--color-muted);
+    .dropdown-shadow {
+        box-shadow: var(--shadow-dropdown);
     }
+
+    .modal-shadow {
+        box-shadow: var(--shadow-modal);
+    }
+
+    .sidebar-width {
+        width: var(--sidebar-width);
+    }
+
+    .topbar-height {
+        height: var(--topbar-height);
+    }
+
+    .icon-sm { font-size: var(--icon-sm); }
+    .icon-md { font-size: var(--icon-md); }
+    .icon-lg { font-size: var(--icon-lg); }
 }

@@ -16,7 +16,7 @@ font-medium transition-all duration-200
 focus:outline-none focus:ring-1
 cursor-pointer
 disabled:pointer-events-none disabled:opacity-50
-rounded-lg
+rounded-md
 ';
 
 $sizes = [

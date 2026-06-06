@@ -158,3 +158,29 @@ Aku juga bisa bantu:
 * menu tree akademik lengkap
 
 tinggal bilang 👍
+
+
+/* ── Lucide Icon Sizing ───────────── */
+
+    .icon-xs svg { width: var(--icon-xs); height: var(--icon-xs); }
+    .icon-sm svg { width: var(--icon-sm); height: var(--icon-sm); }
+    .icon-md svg { width: var(--icon-md); height: var(--icon-md); }
+    .icon-lg svg { width: var(--icon-lg); height: var(--icon-lg); }
+    .icon-xl svg { width: var(--icon-xl); height: var(--icon-xl); }
+
+    .lucide {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .lucide svg {
+        width: var(--icon-md);
+        height: var(--icon-md);
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+    }

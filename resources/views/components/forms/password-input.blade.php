@@ -48,7 +48,7 @@
             id="{{ $name }}"
             name="{{ $name }}"
             x-model="password"
-            class="w-full pl-10 pr-24 py-2.5 rounded-lg border border-card-border bg-surface text-sm"
+            class="w-full pl-10 pr-24 py-2.5 rounded-md border border-card-border bg-surface text-sm"
         >
 
         <div
